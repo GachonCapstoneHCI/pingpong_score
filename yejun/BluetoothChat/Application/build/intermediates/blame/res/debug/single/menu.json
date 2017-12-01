@@ -1,10 +1,10 @@
 [
     {
-        "merged": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
-        "source": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\src\\main\\res\\menu\\main.xml"
+        "merged": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\build\\intermediates\\res\\merged\\debug\\menu\\bluetooth_chat.xml",
+        "source": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\src\\main\\res\\menu\\bluetooth_chat.xml"
     },
     {
-        "merged": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\build\\intermediates\\res\\merged\\debug\\menu\\bluetooth_chat.xml",
-        "source": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\src\\main\\res\\menu\\bluetooth_chat.xml"
+        "merged": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
+        "source": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\src\\main\\res\\menu\\main.xml"
     }
 ]

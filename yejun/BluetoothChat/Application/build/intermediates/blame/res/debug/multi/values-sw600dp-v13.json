@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+        "outputFile": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -163,7 +163,7 @@
                     "endOffset": 674
                 },
                 "from": {
-                    "file": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\src\\main\\res\\values-sw600dp\\template-dimens.xml",
+                    "file": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\src\\main\\res\\values-sw600dp\\template-dimens.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -182,7 +182,7 @@
                     "endOffset": 742
                 },
                 "from": {
-                    "file": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\src\\main\\res\\values-sw600dp\\template-dimens.xml",
+                    "file": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\src\\main\\res\\values-sw600dp\\template-dimens.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
@@ -202,7 +202,7 @@
                     "endOffset": 987
                 },
                 "from": {
-                    "file": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\src\\main\\res\\values-sw600dp\\template-styles.xml",
+                    "file": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\src\\main\\res\\values-sw600dp\\template-styles.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,

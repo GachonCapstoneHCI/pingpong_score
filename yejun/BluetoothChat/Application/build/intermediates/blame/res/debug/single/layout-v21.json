@@ -1,18 +1,18 @@
 [
     {
-        "merged": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
-        "source": "C:\\Users\\YeJun\\.android\\build-cache\\f206ee8137e41a5cf1293ed2a61707948d289dc9\\output\\res\\layout-v21\\notification_template_custom_big.xml"
-    },
-    {
-        "merged": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
+        "merged": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
         "source": "C:\\Users\\YeJun\\.android\\build-cache\\f206ee8137e41a5cf1293ed2a61707948d289dc9\\output\\res\\layout-v21\\notification_template_icon_group.xml"
     },
     {
-        "merged": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
+        "merged": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\YeJun\\.android\\build-cache\\f206ee8137e41a5cf1293ed2a61707948d289dc9\\output\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
         "source": "C:\\Users\\YeJun\\.android\\build-cache\\f206ee8137e41a5cf1293ed2a61707948d289dc9\\output\\res\\layout-v21\\notification_action.xml"
     },
     {
-        "merged": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
+        "merged": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
         "source": "C:\\Users\\YeJun\\.android\\build-cache\\f206ee8137e41a5cf1293ed2a61707948d289dc9\\output\\res\\layout-v21\\notification_action_tombstone.xml"
     }
 ]

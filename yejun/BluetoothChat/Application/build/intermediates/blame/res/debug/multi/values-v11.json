@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+        "outputFile": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
         "map": [
             {
                 "to": {
@@ -503,7 +503,7 @@
                     "endOffset": 14137
                 },
                 "from": {
-                    "file": "C:\\Users\\YeJun\\AndroidStudioProjects\\BluetoothChat\\Application\\src\\main\\res\\values-v11\\template-styles.xml",
+                    "file": "C:\\Users\\YeJun\\Desktop\\capstone\\pingpong_score\\yejun\\BluetoothChat\\Application\\src\\main\\res\\values-v11\\template-styles.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,

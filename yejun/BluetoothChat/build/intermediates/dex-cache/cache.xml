@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\YeJun\AndroidStudioProjects\BluetoothChat\Application\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="30231a82b9f1751f2f2b94470049ad3cc827821e">
-        <dex dex="C:\Users\YeJun\AndroidStudioProjects\BluetoothChat\Application\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_eaf19a5cbfdb441d721c086de9dd76d68813d05f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\YeJun\AndroidStudioProjects\BluetoothChat\Application\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\YeJun\Desktop\capstone\pingpong_score\yejun\BluetoothChat\Application\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\YeJun\AndroidStudioProjects\BluetoothChat\Application\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_cf60340ba747217472af192b0a60385122b76386\classes.dex" />
+        <dex dex="C:\Users\YeJun\Desktop\capstone\pingpong_score\yejun\BluetoothChat\Application\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_467ea6f486ed434484801882f7da84a316eecd73\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\YeJun\Desktop\capstone\pingpong_score\yejun\BluetoothChat\Application\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="f178844acba73656310beeb1f12e4cc2a1938aab">
+        <dex dex="C:\Users\YeJun\Desktop\capstone\pingpong_score\yejun\BluetoothChat\Application\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_9fd3990aedfac59c764f2fcdd15cb6e6c80ffd7e\classes.dex" />
     </item>
 
 </items>
