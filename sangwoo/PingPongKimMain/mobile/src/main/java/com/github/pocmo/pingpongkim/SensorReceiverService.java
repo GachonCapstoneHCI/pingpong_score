@@ -3,6 +3,7 @@ package com.github.pocmo.pingpongkim;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.github.pocmo.pingpongkim.shared.DataMapKeys;
 import com.google.android.gms.wearable.DataEvent;
@@ -114,6 +115,7 @@ public class SensorReceiverService extends WearableListenerService {
                 if(isHorizontalSwing)msg = "SWING";
                 else if(isBackSwing) msg = "BACK SWING";
                 else msg = "NONE";
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
             }
             else{
                 msg = "-";
