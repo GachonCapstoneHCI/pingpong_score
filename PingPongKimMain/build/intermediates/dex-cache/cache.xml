@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/f49fb7f93d79b0713b9b44eeb5e26a093ec6a1ec/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/classes_07e9213f93405f64180f438ffd2c5dd7d4fa617d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_367c156d3214c0db8c422e00d58493969de1c1ee/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-22.2.0_279dffa6e789ea161eb0157d1fa58019f141d426/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="12920f9016b8b05acbc2af7cdc13cef6946fe7d3">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_6550c13b904bd0ad9c86b4a5f29373332a694ebf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/688e6915cb9dbcfb8b13521aa8d97ada8800c667/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ad461692b456f015d707c2fb2783a34c518edd9b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/a39dc17f914db8c0ba8275766b5bdfced2aadb68/output/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-22.2.0_3fb32c6338da3dbd8cac049eed9299430534cd21/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/8c571d6eba01733f54539601d023bcbf885fcf47/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/classes_84fa68a1f4466b8ee8b7a556efcc714992f9d988/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="12920f9016b8b05acbc2af7cdc13cef6946fe7d3">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_6550c13b904bd0ad9c86b4a5f29373332a694ebf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/a39dc17f914db8c0ba8275766b5bdfced2aadb68/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0e593b79af3dfce07e52a3c2762a35bb3eee91b6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.gradle/caches/modules-2/files-2.1/io.realm/realm-android/0.80.3/7979d05ba7b919c53766bf98e31aaf0e9feb0590/realm-android-0.80.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7979d05ba7b919c53766bf98e31aaf0e9feb0590">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/realm-android-0.80.3_181cb547d0dd2af9804328eea7e24130292b0435/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="778b31a42d503179677ac2fa17e5bc592f52c49a">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_22e5d41b58fc679d858fe56df93441db16725786/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/1065456735575a6c775c0a1edba8effc3c141225/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a191bed7da330b5d846d946bd2423bbd182005cd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/b4160aa0c4dbf6b379fd576c49569e16450b55c8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5b37cf49773f7f17aca9830efd3053b0cac56728">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/classes_87e125ef6b0a5712962cd8c3893aca9cb4bc83a8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/c9963be137ce630d2ac02739139ed65316aa751d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/classes_00f9ace2ed16735e0ecc5445f0e8e501cf445d02/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/9e365300715bae9e1078a9d54cd095b0cf4855da/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="97f7e239e86ef994de894818fdd8a71d2e89d6aa">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9dfb4cd8934830ea2c8d534defbf04e49ed648e8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f1d4b960b74a9b8cc9a567b9b7828b2161b10df9">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_22e5d41b58fc679d858fe56df93441db16725786/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.6/ee373b6d0d6ea36a0a9b0cbabaf16be7e7fc3e30/otto-1.3.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ee373b6d0d6ea36a0a9b0cbabaf16be7e7fc3e30">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/otto-1.3.6_33ed475ae1bc06467d6b9d83ad706d775ed1e16e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/macbook/.android/build-cache/d6e2f7754f88f123af5c615d73a4b7fb6163945f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a78183f30e769a98ab4820794f597763088d3065">
+        <dex dex="/Users/macbook/Desktop/졸업작품2017/프로젝트/테스트/PingPongKim_proto1/mobile/build/intermediates/transforms/dex/debug/folders/1000/10/classes_60c3f60353df48134d4dd29058efcf5ed43d6e3d/classes.dex" />
+    </item>
+
+</items>

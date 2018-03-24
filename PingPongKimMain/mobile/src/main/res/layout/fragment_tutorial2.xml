@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="환영합니다! 미래의 탁구왕 XXX님!"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="스마트워치와 연결하세요"/>
+
+    <Button
+        android:id="@+id/buttonCheckWatchConnection"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="연결확인"/>
+
+
+</LinearLayout>

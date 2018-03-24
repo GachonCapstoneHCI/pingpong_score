@@ -1,0 +1,58 @@
+<!-- fragment_screen_slide_page.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="당신은 김탁구인가요?"
+            />
+        <EditText
+            android:id="@+id/userNickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="닉네임을 입력해주세요"/>
+
+        <EditText
+            android:id="@+id/userPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호를 입력해주세요(4자리)"/>
+
+        <EditText
+            android:id="@+id/userHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="키를 입력해주세요"/>
+
+        <EditText
+            android:id="@+id/userWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="몸무게을 입력해주세요"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="당신의 탁구 실력은?"/>
+
+        <Spinner
+            android:id="@+id/userAbilityLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/buttonUserInfoSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="확인"/>
+</LinearLayout>
