@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.github.pocmo.pingpongkim.ClientServerActivity">
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/pingpongkim_maincolor"
+            android:text="서버용 핸드폰이라면"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+        <Button
+            android:id="@+id/buttonStartServer"
+            android:text="서버로 시작하기"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/pingpongkim_maincolor"
+            android:text="플레이어용 핸드폰이라면"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+        <EditText
+            android:id="@+id/editTextServerIp"
+            android:hint="서버 IP 를 입력하고 버튼을 누르세요"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+        <EditText
+            android:id="@+id/editTextPlayerName"
+            android:hint="플레이어 이름을 입력하세요"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+        <Button
+            android:id="@+id/buttonStartClient"
+            android:text="플레이어로 시작하기"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
