@@ -14,10 +14,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:id="@+id/tutorial2Text1"
         android:textColor="#000000"
-        android:text="환영합니다!"/>
+        android:text="2단계 : 환영합니다!"/>
     <Space
         android:layout_width="match_parent"
         android:layout_height="20dp" />

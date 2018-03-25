@@ -62,12 +62,12 @@ public class SensorService extends Service implements SensorEventListener {
 
         client = DeviceClient.getInstance(this);
 
-        Notification.Builder builder = new Notification.Builder(this);
-        builder.setContentTitle("Pingpong Kim");
-        builder.setContentText("데이터를 수집하는 중입니다...");
-        builder.setSmallIcon(R.mipmap.ic_launcher_pingpong);
+        //Notification.Builder builder = new Notification.Builder(this);
+        //builder.setContentTitle("Pingpong Kim");
+        //builder.setContentText("데이터를 수집하는 중입니다...");
+        //builder.setSmallIcon(R.mipmap.ic_launcher_pingpong);
 
-        startForeground(1, builder.build());
+        //startForeground(1, builder.build());
 
         startMeasurement();
     }

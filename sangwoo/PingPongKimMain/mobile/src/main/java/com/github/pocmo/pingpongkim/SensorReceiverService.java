@@ -19,12 +19,17 @@ import java.util.Arrays;
 public class SensorReceiverService extends WearableListenerService {
     public static final String ACTION_RECEIVE_SENSOR_DATA = "pingpongboy.sensordata";
     public static final String ACTION_DETECT_SWING = "pingpongboy.detectswing";
+    public static final String ACTION_TUTORIAL_CALB = "pingpongboy.tutorialcalb";
+    public static final String ACTION_START_PLAY = "pingpongboy.startplay";
     private static final String TAG = "PingPongBoy";
     private boolean isPlaying = false;
 
     double prev_gravity_z = 9;
     boolean isHorizontalSwing = true;
     boolean isBackSwing = false;
+
+    boolean isTutorial = true;
+    private int tutorialCount = 0;
 
 
     private RemoteSensorManager sensorManager;
@@ -62,7 +67,7 @@ public class SensorReceiverService extends WearableListenerService {
         if(!isPlaying){
             //새로운 액티비티 실행
             Intent intent = new Intent();
-            intent.setAction("play");
+            intent.setAction(ACTION_START_PLAY);
             isPlaying = true;
             sendBroadcast(intent);
         }
@@ -109,13 +114,26 @@ public class SensorReceiverService extends WearableListenerService {
             Intent intent = new Intent(ACTION_DETECT_SWING);
             double result = checkIsSwing(values);
             //String msg = result > 0 ? "SWING" : "-";
-            String msg;
 
+            String msg = "";
             if(result > 0){
                 if(isHorizontalSwing)msg = "SWING";
                 else if(isBackSwing) msg = "BACK SWING";
                 else msg = "NONE";
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+                //튜토리얼일 때는 broadcast 를 뿌려준다
+                if(isTutorial && (msg.equals("SWING") || msg.equals("BACK SWING"))){
+                    tutorialCount++;
+                    Log.e("nogary","service : " + Integer.toString(tutorialCount) );
+                    if(tutorialCount <= 5){
+                        Intent tutorial_intent = new Intent();
+                        intent.setAction(ACTION_TUTORIAL_CALB);
+                        sendBroadcast(tutorial_intent);
+                        if(tutorialCount == 5) isTutorial = false;
+                    }
+
+
+                }
             }
             else{
                 msg = "-";
@@ -124,7 +142,6 @@ public class SensorReceiverService extends WearableListenerService {
             intent.putExtra("swingdetect", msg);
             intent.putExtra("timestamp", timestamp);
             sendBroadcast(intent);
-
 
             //swing 이 아니면 0 을 넣고 swing 이면 svm 값을 넣어서 그래프를 하나만 찍도록 한다
             if(msg.equals("-") || msg.equals("NONE"))
@@ -168,8 +185,8 @@ public class SensorReceiverService extends WearableListenerService {
     boolean isSkipping = false;
     int skipCount = 0;
     //int swingCount = 0;
-    final int baseThreshold = 120;
-    final int skipInterval = 10;
+    final int baseThreshold = 200;
+    final int skipInterval = 20;
 
 
     double checkIsSwing(float[] values){

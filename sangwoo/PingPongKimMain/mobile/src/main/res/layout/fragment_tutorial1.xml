@@ -24,9 +24,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="30dp"
+                android:textSize="20sp"
                 android:textColor="#000000"
-                android:text="당신은 김탁구인가요?"
+                android:text="1단계 : 당신은 김탁구인가요?"
                 />
             <Space
                 android:layout_width="match_parent"

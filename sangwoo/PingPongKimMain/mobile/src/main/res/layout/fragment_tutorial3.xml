@@ -2,60 +2,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:background="#FFFFFF"
+    android:padding="10dp"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="당신의 스윙을 보여주세요"/>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:text="3단계 : 당신의 스윙을 보여주세요"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="20sp"
         android:text="스마트 워치에서 시작을 누른 다음, 공을 쳐보세요!"/>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
         android:background="@color/colorAccent"/>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
     <!--임시로 한 것이기 떄문에 애니메이션을 동원해서 하나씩 차례로 보여주도록 한다-->
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="첫 번째 스윙을 보여주세요!"/>
+        android:gravity="center">
+        <TextView
+            android:id="@+id/tutorialSwingGuideText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:text="첫 번째 스윙을 보여주세요!"/>
+        <TextView
+            android:id="@+id/tutorialSwingGuideText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            android:text="한번더 멋있는 스윙을 보여주세요!"/>
+        <TextView
+            android:id="@+id/tutorialSwingGuideText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            android:text="와우! 다시 한 번 더!"/>
+        <TextView
+            android:id="@+id/tutorialSwingGuideText4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            android:text="거의 다왔어요! 멋있는 스윙 부탁해요~"/>
+        <TextView
+            android:id="@+id/tutorialSwingGuideText5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            android:text="마지막으로 나이스 스윙 한 번~"/>
+    </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="한번더 멋있는 스윙을 보여주세요!"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="와우! 다시 한 번 더!"/>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="거의 다왔어요! 멋있는 스윙 부탁해요~"/>
+        android:weightSum="2">
+        <Button
+            android:id="@+id/buttonTemp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="(개발용)그래프 띄우기"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="마지막으로 나이스 스윙 한 번~"/>
+        <Button
+            android:id="@+id/buttonTemp2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="(개발용)메인 페이지로 이동"/>
 
-    <Button
-        android:id="@+id/buttonTemp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(임시)그래프 띄우기"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonTemp2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(임시)메인 페이지로 이동"/>
 
 </LinearLayout>

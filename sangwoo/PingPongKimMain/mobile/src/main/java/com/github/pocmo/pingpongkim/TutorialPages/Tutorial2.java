@@ -2,6 +2,10 @@ package com.github.pocmo.pingpongkim.TutorialPages;
 
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,8 +22,11 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.github.pocmo.pingpongkim.MainActivity2;
+import com.github.pocmo.pingpongkim.PlayActivity;
 import com.github.pocmo.pingpongkim.R;
 import com.github.pocmo.pingpongkim.RemoteSensorManager;
+import com.github.pocmo.pingpongkim.SensorReceiverService;
 import com.github.pocmo.pingpongkim.data.Sensor;
 import com.github.pocmo.pingpongkim.events.BusProvider;
 import com.github.pocmo.pingpongkim.events.NewSensorEvent;
@@ -89,6 +96,7 @@ public class Tutorial2 extends Tutorial {
 
 
         //스마트 워치 연결 확인
+        //필요한가
         List<Sensor> sensors = RemoteSensorManager.getInstance(rootView.getContext()).getSensors();
         for(Sensor s : sensors){
             remoteSensorManager.filterBySensorId((int)s.getId());
@@ -103,10 +111,14 @@ public class Tutorial2 extends Tutorial {
                 txtProgress = (TextView) rootView.findViewById(R.id.txtProgress);
                 progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
 
+
+                new ProgressBarTask().execute();
+                //start measurement  를 해야지 센서들을 가져올 수 있다
+                remoteSensorManager.startMeasurement();
+                BusProvider.getInstance().register(rootView.getContext());
                 remoteSensorManager.getNodes(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
                     @Override
                     public void onResult(final NodeApi.GetConnectedNodesResult pGetConnectedNodesResult) {
-                        Toast.makeText(rootView.getContext(), "뀨2" , Toast.LENGTH_SHORT).show();
                         mNodes = pGetConnectedNodesResult.getNodes();
                         if(mNodes.size() > 0){
                             //Log.e("nogary : ", n.getDisplayName());
@@ -115,9 +127,9 @@ public class Tutorial2 extends Tutorial {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    //remoteSensorManager.stopMeasurement();
+                                    remoteSensorManager.stopMeasurement();
                                     //중지
-                                    //BusProvider.getInstance().unregister(this);
+                                    BusProvider.getInstance().unregister(this);
                                     mListener.onMoveNextPage(2);
                                 }
                             }, 5000);
@@ -128,17 +140,12 @@ public class Tutorial2 extends Tutorial {
                     }
                 });
 
-                new ProgressBarTask().execute();
-
-
-
             }
         });
         return rootView;
     }
     @Subscribe
     public void onNewSensorEvent(final NewSensorEvent event) {
-        Log.e("nogary", "new sensor detected");
     }
 
     private class ProgressBarTask extends AsyncTask<Void, Integer, String> {
@@ -176,7 +183,6 @@ public class Tutorial2 extends Tutorial {
         protected void onPostExecute(String s){
             //연결 시작
             //remoteSensorManager.startMeasurement();
-            Toast.makeText(rootView.getContext(), "뀨" , Toast.LENGTH_SHORT).show();
 //            remoteSensorManager.getNodes(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
 //                @Override
 //                public void onResult(final NodeApi.GetConnectedNodesResult pGetConnectedNodesResult) {
@@ -204,6 +210,8 @@ public class Tutorial2 extends Tutorial {
 
         }
     }
+
+
 
 
 }

@@ -71,11 +71,9 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
 //            }
 //        });
 
-        //리시버 등록
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("play");
+
         myReceiver = new MyReceiver();
-        registerReceiver(myReceiver, intentFilter);
+        registerReceiver(myReceiver, makeIntentFilter());
     }
 
     @Override
@@ -186,7 +184,7 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(action.equals("play")){
+            if(action != null && action.equals(SensorReceiverService.ACTION_START_PLAY)){
                 Intent playActivity = new Intent(MainActivity2.this, PlayActivity.class);
                 startActivity(playActivity);
             }
@@ -200,6 +198,7 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
         final IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(SensorReceiverService.ACTION_RECEIVE_SENSOR_DATA);
         intentFilter.addAction(SensorReceiverService.ACTION_DETECT_SWING);
+        intentFilter.addAction(SensorReceiverService.ACTION_START_PLAY);
         return intentFilter;
     }
 }
