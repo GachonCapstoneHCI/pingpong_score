@@ -2,6 +2,7 @@ package com.github.pocmo.pingpongkim.TutorialPages;
 
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -27,6 +28,7 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.squareup.otto.Subscribe;
 
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -101,53 +103,32 @@ public class Tutorial2 extends Tutorial {
                 txtProgress = (TextView) rootView.findViewById(R.id.txtProgress);
                 progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
 
-                new Thread(new Runnable() {
+                remoteSensorManager.getNodes(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
                     @Override
-                    public void run() {
-                        while (pStatus <= 100) {
-                            handler.post(new Runnable() {
+                    public void onResult(final NodeApi.GetConnectedNodesResult pGetConnectedNodesResult) {
+                        Toast.makeText(rootView.getContext(), "뀨2" , Toast.LENGTH_SHORT).show();
+                        mNodes = pGetConnectedNodesResult.getNodes();
+                        if(mNodes.size() > 0){
+                            //Log.e("nogary : ", n.getDisplayName());
+                            Toast.makeText(rootView.getContext(), "스마트 워치 "+ mNodes.get(0).getDisplayName() + " 와 연결되어있네용! 5초 후 다음 페이지로 이동합니다" , Toast.LENGTH_SHORT).show();
+                            //3초 후에 다음 페이지로 이동
+                            new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    progressBar.setProgress(pStatus);
-                                    txtProgress.setText(pStatus + " %");
+                                    //remoteSensorManager.stopMeasurement();
+                                    //중지
+                                    //BusProvider.getInstance().unregister(this);
+                                    mListener.onMoveNextPage(2);
                                 }
-                            });
-                            try {
-                                Thread.sleep(30);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            pStatus++;
+                            }, 5000);
                         }
-                        //BusProvider.getInstance().register(rootView.getContext());
-
-                        //연결 시작
-                        //remoteSensorManager.startMeasurement();
-                        remoteSensorManager.getNodes(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
-                            @Override
-                            public void onResult(final NodeApi.GetConnectedNodesResult pGetConnectedNodesResult) {
-                                mNodes = pGetConnectedNodesResult.getNodes();
-                                if(mNodes.size() > 0){
-                                    //Log.e("nogary : ", n.getDisplayName());
-                                    Toast.makeText(rootView.getContext(), "스마트 워치 "+ mNodes.get(0).getDisplayName() + " 와 연결되어있네용! 5초 후 다음 페이지로 이동합니다" , Toast.LENGTH_SHORT).show();
-                                    //3초 후에 다음 페이지로 이동
-                                    new Handler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            //remoteSensorManager.stopMeasurement();
-                                            //중지
-                                            //BusProvider.getInstance().unregister(this);
-                                            mListener.onMoveNextPage(2);
-                                        }
-                                    }, 5000);
-                                }
-                                else{
-                                    Toast.makeText(rootView.getContext(), "스마트 워치와 연결되어있지 않습니다!" , Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                        else{
+                            Toast.makeText(rootView.getContext(), "스마트 워치와 연결되어있지 않습니다!" , Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }).start();
+                });
+
+                new ProgressBarTask().execute();
 
 
 
@@ -159,5 +140,70 @@ public class Tutorial2 extends Tutorial {
     public void onNewSensorEvent(final NewSensorEvent event) {
         Log.e("nogary", "new sensor detected");
     }
+
+    private class ProgressBarTask extends AsyncTask<Void, Integer, String> {
+        protected String doInBackground(Void... params) {
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (pStatus <= 100) {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.setProgress(pStatus);
+                                txtProgress.setText(pStatus + " %");
+                            }
+                        });
+                        try {
+                            Thread.sleep(30);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        pStatus++;
+                    }
+
+                }
+            }).start();
+
+
+            return null;
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+        }
+
+        protected void onPostExecute(String s){
+            //연결 시작
+            //remoteSensorManager.startMeasurement();
+            Toast.makeText(rootView.getContext(), "뀨" , Toast.LENGTH_SHORT).show();
+//            remoteSensorManager.getNodes(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
+//                @Override
+//                public void onResult(final NodeApi.GetConnectedNodesResult pGetConnectedNodesResult) {
+//                    Toast.makeText(rootView.getContext(), "뀨2" , Toast.LENGTH_SHORT).show();
+//                    mNodes = pGetConnectedNodesResult.getNodes();
+//                    if(mNodes.size() > 0){
+//                        //Log.e("nogary : ", n.getDisplayName());
+//                        Toast.makeText(rootView.getContext(), "스마트 워치 "+ mNodes.get(0).getDisplayName() + " 와 연결되어있네용! 5초 후 다음 페이지로 이동합니다" , Toast.LENGTH_SHORT).show();
+//                        //3초 후에 다음 페이지로 이동
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                //remoteSensorManager.stopMeasurement();
+//                                //중지
+//                                //BusProvider.getInstance().unregister(this);
+//                                mListener.onMoveNextPage(2);
+//                            }
+//                        }, 5000);
+//                    }
+//                    else{
+//                        Toast.makeText(rootView.getContext(), "스마트 워치와 연결되어있지 않습니다!" , Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
+
+        }
+    }
+
 
 }
