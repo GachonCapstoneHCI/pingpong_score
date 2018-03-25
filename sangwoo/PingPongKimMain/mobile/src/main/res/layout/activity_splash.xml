@@ -5,23 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.github.pocmo.pingpongkim.SplashActivity"
+    android:background="@color/pingpongkim_maincolor"
+    android:gravity="center"
     >
-    <LinearLayout
+    <TextView
+        android:id="@+id/textSplash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/splash_ysm"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="#FF0000"
-            android:text="결전의 날은 왔다. 내일의 성공은 오늘의 준비로 가능하다"/>
-    </LinearLayout>
-
-
+        android:text="탁구왕 김탁구"
+        android:textColor="#FFFFFF"
+        android:textSize="50dp"
+        android:textStyle="bold" />
 </LinearLayout>

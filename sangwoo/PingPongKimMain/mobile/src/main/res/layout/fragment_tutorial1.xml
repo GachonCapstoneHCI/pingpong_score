@@ -3,56 +3,124 @@
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:weightSum="10"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="당신은 김탁구인가요?"
-            />
-        <EditText
-            android:id="@+id/userNickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="닉네임을 입력해주세요"/>
-
-        <EditText
-            android:id="@+id/userPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="비밀번호를 입력해주세요(4자리)"/>
-
-        <EditText
-            android:id="@+id/userHeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="키를 입력해주세요"/>
-
-        <EditText
-            android:id="@+id/userWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="몸무게을 입력해주세요"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="당신의 탁구 실력은?"/>
-
-        <Spinner
-            android:id="@+id/userAbilityLevel"
+        <LinearLayout
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible" />
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="30dp"
+                android:textColor="#000000"
+                android:text="당신은 김탁구인가요?"
+                />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <EditText
+                android:id="@+id/userNickname"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:background="@layout/rounded_border_edittext"
+                android:textColorHint="@color/common_signin_btn_light_text_default"
+                android:padding="5dp"
+                android:hint="닉네임을 입력하세용"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <EditText
+                android:id="@+id/userPassword"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:background="@layout/rounded_border_edittext"
+                android:textColorHint="@color/common_signin_btn_light_text_default"
+                android:padding="5dp"
+                android:hint="4자리 비밀번호를 입력하세용"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <EditText
+                android:id="@+id/userHeight"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:background="@layout/rounded_border_edittext"
+                android:textColorHint="@color/common_signin_btn_light_text_default"
+                android:padding="5dp"
+                android:hint="키를 입력해주세요"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <EditText
+                android:id="@+id/userWeight"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:background="@layout/rounded_border_edittext"
+                android:textColorHint="@color/common_signin_btn_light_text_default"
+                android:padding="5dp"
+                android:hint="몸무게을 입력해주세요"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:text="당신의 탁구 실력은?"/>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="상"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="중"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="하"/>
+
+            </RadioGroup>
+
+            <!--<Spinner-->
+                <!--android:id="@+id/userAbilityLevel"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:visibility="visible" />-->
+        </LinearLayout>
+        <Button
+            android:id="@+id/buttonUserInfoSubmit"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="확인" />
     </LinearLayout>
-    <Button
-        android:id="@+id/buttonUserInfoSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="확인"/>
 </LinearLayout>

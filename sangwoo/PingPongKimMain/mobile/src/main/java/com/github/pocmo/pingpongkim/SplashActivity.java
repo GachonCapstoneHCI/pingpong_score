@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+
 public class SplashActivity extends Activity {
 
 
@@ -15,6 +18,9 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        //1초동안 글자 애니메이션 재생 : 깜빡임
+        YoYo.with(Techniques.Flash).duration(1000).delay(1000).playOn(findViewById(R.id.textSplash));
 
         //3초 후에 화면 종료
         mHandler = new Handler();

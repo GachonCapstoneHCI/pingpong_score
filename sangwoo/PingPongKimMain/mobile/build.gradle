@@ -47,4 +47,13 @@ dependencies {
 //    androidTestImplementation 'com.android.support.test:runner:1.0.1'
 //    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
+    //글씨 yoyo 효과
+    compile 'com.android.support:support-compat:26.1.0'
+    compile 'com.daimajia.easing:library:2.0@aar'
+    compile 'com.daimajia.androidanimations:library:2.3@aar'
+
+
+
+
+
 }
