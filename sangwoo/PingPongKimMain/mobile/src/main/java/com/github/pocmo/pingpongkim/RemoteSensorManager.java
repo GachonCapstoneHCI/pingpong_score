@@ -32,8 +32,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 스마트워치 측정을 시작하고 센서 정보를 가져올 수 있는 원격제어매니저
+ **/
 public class RemoteSensorManager {
-    private static final String TAG = "PingPongBoy";
     private static final int CLIENT_CONNECTION_TIMEOUT = 15000;
 
     private static RemoteSensorManager instance;
@@ -60,7 +62,6 @@ public class RemoteSensorManager {
         this.sensorMapping = new SparseArray<Sensor>();
         this.sensors = new ArrayList<Sensor>();
         this.sensorNames = new SensorNames();
-
         this.googleApiClient = new GoogleApiClient.Builder(context)
                 .addApi(Wearable.API)
                 .build();
@@ -112,7 +113,6 @@ public class RemoteSensorManager {
         TagData tag = new TagData(pTagName, System.currentTimeMillis());
         this.tags.add(tag);
 
-
         BusProvider.postOnMainThread(new TagAddedEvent(tag));
     }
 
@@ -139,10 +139,8 @@ public class RemoteSensorManager {
         });
     }
 
-    ;
-
     private void filterBySensorIdInBackground(final int sensorId) {
-        Log.d(TAG, "filterBySensorId(" + sensorId + ")");
+        Log.d(GlobalClass.TAG, "filterBySensorId(" + sensorId + ")");
 
         if (validateConnection()) {
             PutDataMapRequest dataMap = PutDataMapRequest.create("/filter");
@@ -154,12 +152,16 @@ public class RemoteSensorManager {
             Wearable.DataApi.putDataItem(googleApiClient, putDataRequest).setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
                 @Override
                 public void onResult(DataApi.DataItemResult dataItemResult) {
-                    Log.d(TAG, "Filter by sensor " + sensorId + ": " + dataItemResult.getStatus().isSuccess());
+                    Log.d(GlobalClass.TAG, "Filter by sensor " + sensorId + ": " + dataItemResult.getStatus().isSuccess());
                 }
             });
         }
     }
 
+    /**
+     * 측정을 시작해야지 센서 정보를 가져올 수 있다
+     * 얘 시작 안해서 스마트워치와 연결상태 못가져왔었음
+     */
     public void startMeasurement() {
         executorService.submit(new Runnable() {
             @Override
@@ -186,21 +188,21 @@ public class RemoteSensorManager {
         if (validateConnection()) {
             List<Node> nodes = Wearable.NodeApi.getConnectedNodes(googleApiClient).await().getNodes();
 
-            Log.d(TAG, "Sending to nodes: " + nodes.size());
+            Log.d(GlobalClass.TAG, "Sending to nodes: " + nodes.size());
 
             for (Node node : nodes) {
-                Log.i(TAG, "add node " + node.getDisplayName());
+                Log.i(GlobalClass.TAG, "add node " + node.getDisplayName());
                 Wearable.MessageApi.sendMessage(
                         googleApiClient, node.getId(), path, null
                 ).setResultCallback(new ResultCallback<MessageApi.SendMessageResult>() {
                     @Override
                     public void onResult(MessageApi.SendMessageResult sendMessageResult) {
-                        Log.d(TAG, "controlMeasurementInBackground(" + path + "): " + sendMessageResult.getStatus().isSuccess());
+                        Log.d(GlobalClass.TAG, "controlMeasurementInBackground(" + path + "): " + sendMessageResult.getStatus().isSuccess());
                     }
                 });
             }
         } else {
-            Log.w(TAG, "No connection possible");
+            Log.w(GlobalClass.TAG, "No connection possible");
         }
     }
 }

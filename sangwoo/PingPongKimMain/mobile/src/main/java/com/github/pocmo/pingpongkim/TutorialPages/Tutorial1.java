@@ -16,21 +16,17 @@ import com.github.pocmo.pingpongkim.R;
 
 /**
  * A simple {@link Fragment} subclass.
+ * 회원가입 페이지 (사용자 닉네임, 나이, 키, 몸무게, 탁구 실력정도 등)
+ * 서버 쪽에 데이터를 보내서 가능하면 다음 페이지로 넘어가고,
+ * 데이터가 보내지지 않으면 다음 페이지로 넘아가지 않음
  */
 public class Tutorial1 extends Tutorial {
 
-//    public interface OnMoveToNextPage{
-//        void OnMoveToNextPage(int currentItem);
-//    }
-
-    //
     Tutorial.TutorialNextPage mListener;
 
     //뷰
     //Spinner userAbilityLevelSpinner;
     Button buttonUserInfoSubmit;
-
-
 
     public Tutorial1() {
         // Required empty public constructor
@@ -57,18 +53,6 @@ public class Tutorial1 extends Tutorial {
 
 
         //TODO : 사용자 정보 입력 뷰 메모리에 올리기
-
-
-        //스피너 뷰
-        //userAbilityLevelSpinner = (Spinner)rootView.findViewById(R.id.userAbilityLevel);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(rootView.getContext(),
-//                R.array.userAbilityLevel, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        //userAbilityLevelSpinner.setAdapter(adapter);
-
         //버튼
         buttonUserInfoSubmit = (Button)rootView.findViewById(R.id.buttonUserInfoSubmit);
         buttonUserInfoSubmit.setOnClickListener(new View.OnClickListener() {
@@ -85,10 +69,7 @@ public class Tutorial1 extends Tutorial {
                 }
             }
         });
-
         return rootView;
     }
-
-
 }
 

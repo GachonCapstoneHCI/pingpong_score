@@ -1,46 +1,74 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context="com.pingpongkim.pingpongkimmain.MainPages.Tab1">
+    android:layout_height="wrap_content">
 
-    <!-- TODO: Update blank fragment layout -->
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@color/colorAccent"/>
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="사용자 이름" />
-    <TextView
-        android:id="@+id/userLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="사용자 레벨" />
-    <TextView
-        android:id="@+id/userWinningRate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="승률%" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="최근 5경기 기록" />
-
-    <ListView
-        android:id="@+id/recentRecords"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </ListView>
+        android:gravity="center"
+        android:orientation="vertical">
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
 
+        <!-- TODO: Update blank fragment layout -->
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/default_user_photo"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/userLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="사용자 레벨 " />
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="사용자 이름" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/userWinningRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50 % (50/100)" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="최근 5경기 기록" />
+
+        <Button
+            android:id="@+id/buttonStartGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="경기 시작하기"
+            android:textColor="#000000" />
+
+        <!--<ListView-->
+            <!--android:id="@+id/recentRecords"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="3">-->
+
+        <!--</ListView>-->
+    </LinearLayout>
 
 
-
-
-</LinearLayout>
+</RelativeLayout>

@@ -24,14 +24,15 @@ import com.github.pocmo.pingpongkim.SensorReceiverService;
  * A simple {@link Fragment} subclass.
  */
 public class Tutorial3 extends Tutorial {
-
-
-    ViewGroup rootView;
     Tutorial.TutorialNextPage mListener;
+    MyReceiver myReceiver;
+    ViewGroup rootView;
+    TextView[] tutorialGuideTextViews;
     private int count = 0;
 
-    TextView[] tutorialGuideTextViews;
-
+    //뷰
+    private Button buttonTemp;
+    private Button buttonTemp2;
 
     @Override
     public void onAttach(Activity activity) {
@@ -46,15 +47,8 @@ public class Tutorial3 extends Tutorial {
         }
     }
 
-    //뷰
-    Button buttonTemp;
-    Button buttonTemp2;
 
-    public Tutorial3() {
-        // Required empty public constructor
-    }
-
-
+    public Tutorial3() {}
 
 
     @Override
@@ -62,14 +56,17 @@ public class Tutorial3 extends Tutorial {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_tutorial3, container, false);
+
+        //뷰 초기화
         buttonTemp = (Button)rootView.findViewById(R.id.buttonTemp);
+        //id 가 3이면 메인 액티비티(개발용 그래프)를 보여준다
         buttonTemp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onMoveNextPage(3);
             }
         });
-
+        //id 가 4면 메인 액티비티2(메인 페이지)를 보여준다
         buttonTemp2 = (Button)rootView.findViewById(R.id.buttonTemp2);
         buttonTemp2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +75,7 @@ public class Tutorial3 extends Tutorial {
             }
         });
 
-        //튜토리얼 가이드 텍스트
+        //튜토리얼 가이드 텍스트 (1~5단계까지 있음)
         tutorialGuideTextViews = new TextView[5];
         tutorialGuideTextViews[0] = rootView.findViewById(R.id.tutorialSwingGuideText1);
         tutorialGuideTextViews[1] = rootView.findViewById(R.id.tutorialSwingGuideText2);
@@ -86,35 +83,36 @@ public class Tutorial3 extends Tutorial {
         tutorialGuideTextViews[3] = rootView.findViewById(R.id.tutorialSwingGuideText4);
         tutorialGuideTextViews[4] = rootView.findViewById(R.id.tutorialSwingGuideText5);
 
-        rootView.getContext().registerReceiver(new MyReceiver(), makeIntentFilter());
-
-
+        //리시버 등록 : 센서 읽는 서비스에서 튜토리얼 스윙했다는 메시지를 보내면 받는다
+        myReceiver = new MyReceiver();
+        rootView.getContext().registerReceiver(myReceiver, makeIntentFilter());
         return rootView;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        rootView.getContext().registerReceiver(new MyReceiver(), makeIntentFilter());
+        rootView.getContext().unregisterReceiver(myReceiver);
     }
 
-    //서비스에서 브로드캐스트 받아서 실행
+    /**
+     * 튜토리얼 스윙에 대한 메시지 받는 브로드캐스트 리시버
+     * (리시버에서 받는 건 '스윙했다!' 임)
+      */
     class MyReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if(action != null && action.equals(SensorReceiverService.ACTION_TUTORIAL_CALB)){
-                count++;
-                if(count < 5){
+                if(count <= 5){
+                    count++;
                     //텍스트를 하나씩 보여준다
                     tutorialGuideTextViews[count-1].setVisibility(View.GONE);
                     tutorialGuideTextViews[count].setVisibility(View.VISIBLE);
                 }
-                if(count >= 5){
+                if(count == 5){
                     Toast.makeText(getContext(), "칼리브레이션이 끝났습니다. 메인페이지로 이동하세요", Toast.LENGTH_SHORT).show();
-
                 }
-
             }
         }
     }

@@ -8,6 +8,9 @@ import android.os.Handler;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
+/**
+ * 초기 탁구왕 김탁구 화면
+ */
 public class SplashActivity extends Activity {
 
 

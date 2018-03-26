@@ -1,13 +1,18 @@
 package com.github.pocmo.pingpongkim.MainPages;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.github.pocmo.pingpongkim.MainActivity2;
+import com.github.pocmo.pingpongkim.MatchActivity;
 import com.github.pocmo.pingpongkim.R;
 
 /**
@@ -18,6 +23,7 @@ import com.github.pocmo.pingpongkim.R;
  */
 public class Tab1 extends Fragment {
 
+    private Button buttonStartGame;
     private OnFragmentInteractionListener mListener;
 
     public Tab1() {
@@ -29,7 +35,19 @@ public class Tab1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab1, container, false);
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(
+                R.layout.fragment_tab1, container, false);
+        buttonStartGame = (Button)rootView.findViewById(R.id.buttonStartGame);
+
+        buttonStartGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(rootView.getContext(), "눌렀!", Toast.LENGTH_SHORT).show();
+                Intent matchStartIntent = new Intent(getActivity(), MatchActivity.class);
+                startActivity(matchStartIntent);
+            }
+        });
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

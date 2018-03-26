@@ -34,6 +34,9 @@ import io.realm.RealmConfiguration;
  * A simple {@link android.support.v4.app.Fragment} subclass.
  * Use the {@link SensorFragment#newInstance} factory method to
  * create an instance of this fragment.
+ *
+ * 개발용
+ * 센서 데이터를 그래프로 찍어주기 위한 프래그먼트
  */
 public class SensorFragment extends Fragment {
 
