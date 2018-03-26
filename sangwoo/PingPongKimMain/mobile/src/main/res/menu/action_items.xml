@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/atn_direct_enable"
+        android:icon="@drawable/common_full_open_on_phone"
+        android:title="활성화/비활성화"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/atn_direct_discover"
+        android:icon="@drawable/ic_launcher"
+        android:title="상대 검색"
+        app:showAsAction="ifRoom|withText" />
+</menu>
