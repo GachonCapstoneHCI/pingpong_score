@@ -161,8 +161,9 @@ public class MainActivity extends Activity implements OnClickListener{
                 int downy = (int) (100 - (toTransform[0][i] * 10));
                 int upy = 100;
 
-                if(i > 180 && i < 280) {
-                    if(toTransform[0][i] > 15 || toTransform[0][i] < -20)
+                if(i > 180 && i < 270) {
+                    toTransform[0][i] = toTransform[0][i] * 4;
+                    if(toTransform[0][i] > 60 || toTransform[0][i] < -60)
                         count++;
                 }
 
@@ -170,10 +171,9 @@ public class MainActivity extends Activity implements OnClickListener{
                 canvas.drawLine(x, downy, x, upy, paint);
             }
 
-            if(count > 15)
+            if(count > 20) {
                 Toast.makeText(getApplicationContext(), "탁구공이 튀겼습니다!", Toast.LENGTH_SHORT).show();
-
-            count = 0;
+            }
             imageView.invalidate();
         }
     }
