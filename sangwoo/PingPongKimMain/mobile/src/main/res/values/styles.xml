@@ -8,6 +8,12 @@
         <item name="colorControlHighlight">@color/colorControlHighlight</item>
     </style>
 
+    <style name="tab_text_style">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">100sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:text">승률"</item>
+    </style>
 
     <style name="legend_view">
         <item name="android:clickable">true</item>

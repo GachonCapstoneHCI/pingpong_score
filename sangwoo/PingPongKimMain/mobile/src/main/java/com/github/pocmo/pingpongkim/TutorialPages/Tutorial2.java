@@ -15,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -50,7 +52,7 @@ public class Tutorial2 extends Tutorial {
     Tutorial.TutorialNextPage mListener;
 
     //뷰
-    Button buttonCheckWatchConnection;
+    ImageView buttonCheckWatchConnection;
 
     private TextView txtProgress;
     private ProgressBar progressBar;
@@ -90,7 +92,7 @@ public class Tutorial2 extends Tutorial {
         //final List<Sensor> sensors = RemoteSensorManager.getInstance(rootView.getContext()).getSensors();
 
         //뷰
-        buttonCheckWatchConnection = (Button)rootView.findViewById(R.id.buttonCheckWatchConnection);
+        buttonCheckWatchConnection = (ImageView)rootView.findViewById(R.id.buttonCheckWatchConnection);
         buttonLayout = rootView.findViewById(R.id.buttonLayout);
         progressBarLayout = rootView.findViewById(R.id.progressBarLayout);
 

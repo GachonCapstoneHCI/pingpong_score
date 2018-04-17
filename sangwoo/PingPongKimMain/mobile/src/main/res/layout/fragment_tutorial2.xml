@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:wheel="http://schemas.android.com/apk/res-auto"
-    android:background="#ffffff"
+    android:background="#FFFFFF"
     android:padding="10dp"
     android:orientation="vertical">
 
@@ -17,16 +17,18 @@
         android:textSize="20sp"
         android:id="@+id/tutorial2Text1"
         android:textColor="#000000"
-        android:text="2단계 : 환영합니다!"/>
+        android:text="      2단계 : 환영합니다!"/>
     <Space
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="40dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:textColor="#000000"
+        android:gravity="center"
+        android:textStyle="bold"
         android:id="@+id/tutorial2Text2"
         android:text="당신은 미래의 탁구왕!"/>
 
@@ -37,36 +39,43 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textColor="#000000"
+        android:gravity="center"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:textColor="#8C8C8C"
         android:id="@+id/tutorial2Text3"
-        android:text="먼저 스마트워치와 연결을 확인하세요"/>
+        android:text="스마트 워치와 연결해주세요"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center">
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:background="#FFFFFF">
+
             <RelativeLayout
                 android:id="@+id/buttonLayout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <Button
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
                     android:id="@+id/buttonCheckWatchConnection"
                     android:layout_width="250dp"
                     android:layout_height="250dp"
-                    android:text="연결확인" />
+                    android:src="@drawable/check_conn" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/progressBarLayout"
-                android:visibility="invisible"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_height="wrap_content">
+                android:visibility="invisible">
 
                 <ProgressBar
                     android:id="@+id/progressBar"
@@ -78,6 +87,7 @@
                     android:max="100"
                     android:progress="0"
                     android:progressDrawable="@drawable/custom_progressbar_drawable"
+                    android:background="#FFFFFF"
                     android:secondaryProgress="0" />
 
 
@@ -87,8 +97,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/progressBar"
                     android:layout_centerInParent="true"
-                    android:textColor="#000000"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#000000" />
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>

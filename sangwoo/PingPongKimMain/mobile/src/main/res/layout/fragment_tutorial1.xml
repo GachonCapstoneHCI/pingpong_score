@@ -17,7 +17,7 @@
             android:layout_marginRight="30dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="9"
+            android:layout_weight="8"
             android:gravity="center_vertical"
             android:orientation="vertical">
             <TextView
@@ -26,7 +26,7 @@
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textColor="#000000"
-                android:text="1단계 : 당신은 김탁구인가요?"
+                android:text="@string/one_step"
                 />
             <Space
                 android:layout_width="match_parent"
@@ -36,10 +36,10 @@
                 android:id="@+id/userNickname"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
-                android:background="@layout/rounded_border_edittext"
-                android:textColorHint="@color/common_signin_btn_light_text_default"
+                android:backgroundTint="#FEC141"
                 android:padding="5dp"
-                android:hint="닉네임을 입력하세용"/>
+                android:hint="닉네임"
+                android:textColorHint="#BFBFBF"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -49,10 +49,10 @@
                 android:id="@+id/userPassword"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
-                android:background="@layout/rounded_border_edittext"
-                android:textColorHint="@color/common_signin_btn_light_text_default"
+                android:backgroundTint="#FEC141"
                 android:padding="5dp"
-                android:hint="4자리 비밀번호를 입력하세용"/>
+                android:hint="비밀번호"
+                android:textColorHint="#BFBFBF"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
@@ -61,10 +61,10 @@
                 android:id="@+id/userHeight"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
-                android:background="@layout/rounded_border_edittext"
-                android:textColorHint="@color/common_signin_btn_light_text_default"
+                android:backgroundTint="#FEC141"
                 android:padding="5dp"
-                android:hint="키를 입력해주세요"/>
+                android:hint="키"
+                android:textColorHint="#BFBFBF"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -74,10 +74,10 @@
                 android:id="@+id/userWeight"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
-                android:background="@layout/rounded_border_edittext"
-                android:textColorHint="@color/common_signin_btn_light_text_default"
+                android:backgroundTint="#FEC141"
                 android:padding="5dp"
-                android:hint="몸무게을 입력해주세요"/>
+                android:hint="몸무게"
+                android:textColorHint="#BFBFBF"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -87,27 +87,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:textColor="#000000"
-                android:text="당신의 탁구 실력은?"/>
+                android:textColor="#BFBFBF"
+                android:text="  당신의 탁구 실력은?"/>
 
             <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:text="상"/>
+                    android:button="@drawable/skill_sang"
+                    android:scaleX="0.65"
+                    android:scaleY="0.65"
+                    android:gravity="center" />
+
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:text="중"/>
+                    android:button="@drawable/skill_joong"
+                    android:scaleX="0.65"
+                    android:scaleY="0.65"
+                    android:gravity="center"/>
+
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:text="하"/>
+                    android:button="@drawable/skill_ha"
+                    android:scaleX="0.65"
+                    android:scaleY="0.65"
+                    android:gravity="center" />
 
             </RadioGroup>
 
@@ -117,6 +128,7 @@
                 <!--android:layout_height="wrap_content"-->
                 <!--android:visibility="visible" />-->
         </LinearLayout>
+
         <Button
             android:id="@+id/buttonUserInfoSubmit"
             android:layout_marginLeft="30dp"
@@ -124,6 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="#FEC141"
             android:text="확인" />
     </LinearLayout>
 </LinearLayout>

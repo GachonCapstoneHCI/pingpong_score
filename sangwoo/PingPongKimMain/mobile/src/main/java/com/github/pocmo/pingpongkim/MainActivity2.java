@@ -18,18 +18,17 @@ import android.view.MenuItem;
 
 import com.github.pocmo.pingpongkim.MainPages.Tab1;
 import com.github.pocmo.pingpongkim.MainPages.Tab2;
-import com.github.pocmo.pingpongkim.MainPages.Tab3;
 
 /**
  * Tab1, Tab2, Tab3 이 있는 메인 페이지
  */
 public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentInteractionListener,
-        Tab2.OnFragmentInteractionListener2, Tab3.OnFragmentInteractionListener3{
+        Tab2.OnFragmentInteractionListener2{
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private MyReceiver myReceiver;
     private ViewPager mViewPager;
-    private final int numOfPage = 3;
+    private final int numOfPage = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +98,6 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
                     return new Tab1();
                 case 1:
                     return new Tab2();
-                case 2:
-                    return new Tab3();
                 default:
                     return null;
             }

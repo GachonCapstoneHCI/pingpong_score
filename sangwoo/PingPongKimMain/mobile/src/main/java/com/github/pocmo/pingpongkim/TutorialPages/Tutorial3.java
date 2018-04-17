@@ -77,11 +77,11 @@ public class Tutorial3 extends Tutorial {
 
         //튜토리얼 가이드 텍스트 (1~5단계까지 있음)
         tutorialGuideTextViews = new TextView[5];
-        tutorialGuideTextViews[0] = rootView.findViewById(R.id.tutorialSwingGuideText1);
-        tutorialGuideTextViews[1] = rootView.findViewById(R.id.tutorialSwingGuideText2);
-        tutorialGuideTextViews[2] = rootView.findViewById(R.id.tutorialSwingGuideText3);
-        tutorialGuideTextViews[3] = rootView.findViewById(R.id.tutorialSwingGuideText4);
-        tutorialGuideTextViews[4] = rootView.findViewById(R.id.tutorialSwingGuideText5);
+        //tutorialGuideTextViews[0] = rootView.findViewById(R.id.tutorialSwingGuideText1);
+        //tutorialGuideTextViews[1] = rootView.findViewById(R.id.tutorialSwingGuideText2);
+        //tutorialGuideTextViews[2] = rootView.findViewById(R.id.tutorialSwingGuideText3);
+        //tutorialGuideTextViews[3] = rootView.findViewById(R.id.tutorialSwingGuideText4);
+        //tutorialGuideTextViews[4] = rootView.findViewById(R.id.tutorialSwingGuideText5);
 
         //리시버 등록 : 센서 읽는 서비스에서 튜토리얼 스윙했다는 메시지를 보내면 받는다
         myReceiver = new MyReceiver();

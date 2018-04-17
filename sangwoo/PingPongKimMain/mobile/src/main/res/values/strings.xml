@@ -25,6 +25,14 @@
 <p>Distributed under Apache 2 License</p>
 ]]></string>
 
+    <string name="one_step">1단계 : 김탁구를 넘보는 당신!\n누군지 궁금합니다</string>
+    <string name="three_step">스마트 워치에서 '시작'을 누르고\n스윙해주세요!</string>
+    <string name="three_step_first">첫 번째 스윙 슈욱~</string>
+    <string name="three_step_second">두 번째 스윙 휘웅~</string>
+    <string name="three_step_third">세 번째 스윙 호잇~</string>
+    <string name="three_step_fourth">네 번째 스윙 쇼쇽~</string>
+    <string name="three_step_fifth">다섯 번째 스윙 아뵤뵷!</string>
+
     <string-array name="userAbilityLevel">
         <item>상</item>
         <item>중</item>
