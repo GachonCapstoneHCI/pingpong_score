@@ -35,9 +35,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.pocmo.pingpongkim.GlobalClass;
+import com.github.pocmo.pingpongkim.PlayActivity;
 import com.github.pocmo.pingpongkim.R;
 
 import java.io.File;
@@ -61,8 +64,11 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     private WifiP2pDevice device;
     private WifiP2pInfo info;
     ProgressDialog progressDialog = null;
+    public String partnerName = "NONE";
 
     TextView textMyname, textYourName;
+
+    Button buttonPlay;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -70,9 +76,10 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mContentView = inflater.inflate(R.layout.devices_detail, null);
+        mContentView = inflater.inflate(R.layout.devices_detail, container);
+
 //        mContentView.findViewById(R.id.btn_connect).setOnClickListener(new View.OnClickListener() {
 //
 //            @Override
@@ -121,7 +128,16 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 //                });
 
         textMyname = mContentView.findViewById(R.id.myname);
-        textMyname = mContentView.findViewById(R.id.yourname);
+        textYourName = mContentView.findViewById(R.id.yourname);
+
+        buttonPlay = mContentView.findViewById(R.id.buttonPlay);
+        buttonPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContentView.getContext(), PlayActivity.class);
+                startActivity(intent);
+            }
+        });
         return mContentView;
     }
 
@@ -150,7 +166,12 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         }
         this.info = info;
         this.getView().setVisibility(View.VISIBLE);
+        DeviceListFragment fragmentList = (DeviceListFragment) getFragmentManager()
+                .findFragmentById(R.id.frag_list);
+        fragmentList.getView().setVisibility(View.GONE);
 
+        //텍스트 설정
+        //textYourName.setText(partnerName);
 
         // The owner IP is now known.
 //        TextView view = (TextView) mContentView.findViewById(R.id.group_owner);
@@ -181,7 +202,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     /**
      * Updates the UI with device data
-     * 
+     * 이건 작동하지 않는 듯
      * @param device the device to be displayed
      */
     public void showDetails(WifiP2pDevice device) {

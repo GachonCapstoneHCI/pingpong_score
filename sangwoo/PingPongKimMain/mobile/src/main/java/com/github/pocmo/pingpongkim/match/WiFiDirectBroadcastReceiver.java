@@ -102,14 +102,16 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                         .getFragmentManager().findFragmentById(R.id.frag_detail);
                 manager.requestConnectionInfo(channel, fragment);
 
+
                 //match activity 에 상대방의 이름 vs 내 이름을 띄워준다
-                 activity.setData();
+                activity.setData();
+
             } else {
                 // It's a disconnect
                 activity.resetData();
-                DeviceListFragment fragmentList = (DeviceListFragment) activity
-                        .getFragmentManager().findFragmentById(R.id.frag_list);
-                fragmentList.getView().setVisibility(View.VISIBLE);
+//                DeviceListFragment fragmentList = (DeviceListFragment) activity
+//                        .getFragmentManager().findFragmentById(R.id.frag_list);
+                //fragmentList.getView().setVisibility(View.VISIBLE);
 
             }
         } else if (WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action)) {

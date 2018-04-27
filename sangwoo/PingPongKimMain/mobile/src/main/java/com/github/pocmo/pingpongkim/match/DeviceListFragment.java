@@ -64,6 +64,7 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
         super.onActivityCreated(savedInstanceState);
         this.setListAdapter(new WiFiPeerListAdapter(getActivity(), R.layout.row_device, peers));
 
+
     }
 
     @Override
@@ -134,7 +135,7 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
                         Context.LAYOUT_INFLATER_SERVICE);
                 v = vi.inflate(R.layout.row_device, null);
             }
-            WifiP2pDevice device = items.get(position);
+            final WifiP2pDevice device = items.get(position);
             if (device != null) {
                 TextView top = (TextView) v.findViewById(R.id.device_name);
                 TextView bottom = (TextView) v.findViewById(R.id.device_details);
@@ -171,6 +172,9 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
                     ((DeviceListFragment.DeviceActionListener) getActivity()).connect(config);
                     //리스트 제거
                     thisFragment.getView().setVisibility(View.GONE);
+                    DeviceDetailFragment fragmentDetail = (DeviceDetailFragment) getFragmentManager()
+                            .findFragmentById(R.id.frag_detail);
+                    fragmentDetail.textYourName.setText(connectingDevice.deviceName);
                 }
             });
             return v;

@@ -25,10 +25,11 @@ import com.github.pocmo.pingpongkim.match.WiFiDirectBroadcastReceiver;
 
 public class MatchActivity extends AppCompatActivity implements WifiP2pManager.ChannelListener, DeviceListFragment.DeviceActionListener {
 
+    public String partnerDeviceName = "NONE";
     //뷰
     Button buttonFindPlayer;
     View  fragmentList, fragmentDetails;
-
+    boolean isMatched = false;
 
     //wifi direct
     private WifiP2pManager manager;
@@ -62,37 +63,49 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
         channel = manager.initialize(this, getMainLooper(), null);
 
         buttonFindPlayer = (Button)findViewById(R.id.buttonFindPlayer);
+
+
+        //연결을 초기화하는 과정
         buttonFindPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentList.setVisibility(View.VISIBLE);
-                //상대 매칭 서비스 시작 (wifi direct)
-                if (!isWifiP2pEnabled) {
-                    Toast.makeText(MatchActivity.this, "wifi p2p 가 사용불가합니다",
-                            Toast.LENGTH_SHORT).show();
+
+
+                if(!isMatched){
+                    //fragmentList.setVisibility(View.VISIBLE);
+                    //상대 매칭 서비스 시작 (wifi direct)
+                    if (!isWifiP2pEnabled) {
+                        Toast.makeText(MatchActivity.this, "wifi p2p 가 사용불가합니다",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    //프래그먼트를 가져온다
+                    final DeviceListFragment fragment = (DeviceListFragment) getFragmentManager()
+                            .findFragmentById(R.id.frag_list);
+                    fragment.onInitiateDiscovery();
+
+                    //검색 시작
+                    manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
+
+                        @Override
+                        public void onSuccess() {
+                            Toast.makeText(MatchActivity.this, "Discovery Initiated",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(int reasonCode) {
+                            Toast.makeText(MatchActivity.this, "Discovery Failed : " + reasonCode,
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
-
-                //프래그먼트를 가져온다
-                final DeviceListFragment fragment = (DeviceListFragment) getFragmentManager()
-                        .findFragmentById(R.id.frag_list);
-                fragment.onInitiateDiscovery();
-
-                //검색 시작
-                manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
-
-                    @Override
-                    public void onSuccess() {
-                        Toast.makeText(MatchActivity.this, "Discovery Initiated",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onFailure(int reasonCode) {
-                        Toast.makeText(MatchActivity.this, "Discovery Failed : " + reasonCode,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+                else{
+                    //연결 끊기
+                   disconnect();
+                }
             }
+
         });
 
 
@@ -138,11 +151,20 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
         if (fragmentDetails != null) {
             fragmentDetails.resetViews();
         }
+
+        //버튼 텍스트 복귀
+        isMatched = false;
+        buttonFindPlayer.setText("상대 찾기");
+        getFragmentManager().findFragmentById(R.id.frag_detail).getView().setVisibility(View.GONE);
+        getFragmentManager().findFragmentById(R.id.frag_list).getView().setVisibility(View.VISIBLE);
     }
 
 
     public void setData(){
-
+        isMatched = true;
+        buttonFindPlayer.setText("연결 해제");
+        getFragmentManager().findFragmentById(R.id.frag_detail).getView().setVisibility(View.VISIBLE);
+        getFragmentManager().findFragmentById(R.id.frag_list).getView().setVisibility(View.GONE);
     }
 
     @Override
@@ -220,6 +242,7 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
             @Override
             public void onSuccess() {
                 // WiFiDirectBroadcastReceiver will notify us. Ignore for now.
+                setData();
             }
 
             @Override
@@ -245,7 +268,7 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
 
             @Override
             public void onSuccess() {
-                fragment.getView().setVisibility(View.GONE);
+                resetData();
             }
 
         });
@@ -268,6 +291,7 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
                     "Severe! Channel is probably lost premanently. Try Disable/Re-Enable P2P.",
                     Toast.LENGTH_LONG).show();
         }
+
     }
 
     @Override
@@ -304,5 +328,9 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
                 });
             }
         }
+    }
+
+    public void setPartnerDeviceName(String deviceName){
+        partnerDeviceName = deviceName;
     }
 }

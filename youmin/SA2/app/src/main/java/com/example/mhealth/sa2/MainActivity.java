@@ -133,28 +133,28 @@ public class MainActivity extends Activity implements OnClickListener{
             int count = 0;
             canvas.drawColor(Color.BLACK);
 
-//            try{
-//                File dir = new File(foldername);
-//                //디렉토리 폴더가 없으면 생성함
-//                if(!dir.exists()){
-//                    dir.mkdir();
-//                }
-//                //파일 output stream 생성
-//                FileOutputStream fos = new FileOutputStream(foldername+"/"+filename, true);
-//                //파일쓰기
-//                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fos));
-//                for(int i = 0; i < toTransform[0].length; i++){
-//                    writer.write(String.valueOf(toTransform[0][i]));
-//                    writer.write("/");
-//                }
-//                writer.write("\n");
-//                writer.flush();
-//
-//                writer.close();
-//                fos.close();
-//            }catch (IOException e){
-//                e.printStackTrace();
-//            }
+            try{
+                File dir = new File(foldername);
+                //디렉토리 폴더가 없으면 생성함
+                if(!dir.exists()){
+                    dir.mkdir();
+                }
+                //파일 output stream 생성
+                FileOutputStream fos = new FileOutputStream(foldername+"/"+filename, true);
+                //파일쓰기
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fos));
+                for(int i = 0; i < toTransform[0].length; i++){
+                    writer.write(String.valueOf(toTransform[0][i]));
+                    writer.write("/");
+                }
+                writer.write("\n");
+                writer.flush();
+
+                writer.close();
+                fos.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
 
             for(int i = 0; i < toTransform[0].length; i++){
                 int x = i;

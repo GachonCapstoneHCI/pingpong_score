@@ -70,20 +70,20 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <fragment
                 android:id="@+id/frag_list"
                 class="com.github.pocmo.pingpongkim.match.DeviceListFragment"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="match_parent"/>
 
             <fragment
                 android:id="@+id/frag_detail"
                 class="com.github.pocmo.pingpongkim.match.DeviceDetailFragment"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="match_parent"/>
         </FrameLayout>
 
         <android.support.v4.widget.Space
