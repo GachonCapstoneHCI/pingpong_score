@@ -12,14 +12,15 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-   <!--와이파이 다이렉트 퍼미션 일부 추가 -->
+    <!-- 와이파이 다이렉트 퍼미션 일부 추가 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <!-- Google Play filtering -->
-    <uses-feature android:name="android.hardware.wifi.direct" android:required="true"/>
-
+    <uses-feature
+        android:name="android.hardware.wifi.direct"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -69,7 +70,8 @@
         <activity
             android:name=".PlayActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".MatchActivity"></activity>
+        <activity android:name=".MatchActivity" />
+
     </application>
 
 </manifest>

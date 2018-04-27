@@ -1,5 +1,6 @@
 package com.github.pocmo.pingpongkim;
 
+import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +27,8 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
 
     //뷰
     Button buttonFindPlayer;
+    View  fragmentList, fragmentDetails;
+
 
     //wifi direct
     private WifiP2pManager manager;
@@ -43,6 +46,10 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
         setContentView(R.layout.activity_match);
 
 
+        fragmentDetails = findViewById(R.id.frag_detail);
+        fragmentList = findViewById(R.id.frag_list);
+
+
         // add necessary intent values to be matched.
 
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
@@ -58,6 +65,7 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
         buttonFindPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fragmentList.setVisibility(View.VISIBLE);
                 //상대 매칭 서비스 시작 (wifi direct)
                 if (!isWifiP2pEnabled) {
                     Toast.makeText(MatchActivity.this, "wifi p2p 가 사용불가합니다",
@@ -130,6 +138,11 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
         if (fragmentDetails != null) {
             fragmentDetails.resetViews();
         }
+    }
+
+
+    public void setData(){
+
     }
 
     @Override

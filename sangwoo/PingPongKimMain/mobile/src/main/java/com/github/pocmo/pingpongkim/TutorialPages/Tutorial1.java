@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.github.pocmo.pingpongkim.R;
@@ -25,6 +27,9 @@ public class Tutorial1 extends Tutorial {
     Tutorial.TutorialNextPage mListener;
 
     //뷰
+    EditText userName, userPassword, userWeight, userHeight;
+    RadioGroup userSkills;
+
     //Spinner userAbilityLevelSpinner;
     Button buttonUserInfoSubmit;
 
@@ -52,6 +57,18 @@ public class Tutorial1 extends Tutorial {
                 R.layout.fragment_tutorial1, container, false);
 
 
+        //뷰 객체화
+        userName = rootView.findViewById(R.id.userNickname);
+        userPassword = rootView.findViewById(R.id.userPassword);
+        userHeight = rootView.findViewById(R.id.userHeight);
+        userWeight = rootView.findViewById(R.id.userWeight);
+        userSkills = rootView.findViewById(R.id.userSkill);
+        int id = userSkills.getCheckedRadioButtonId();
+
+        //서버로 전송
+
+
+
         //TODO : 사용자 정보 입력 뷰 메모리에 올리기
         //버튼
         buttonUserInfoSubmit = (Button)rootView.findViewById(R.id.buttonUserInfoSubmit);
@@ -59,6 +76,7 @@ public class Tutorial1 extends Tutorial {
             @Override
             public void onClick(View v) {
                 //TODO : 사용자 정보 서버로 전송
+
 
                 boolean isSuccess = true;
 

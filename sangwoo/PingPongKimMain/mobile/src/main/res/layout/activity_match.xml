@@ -23,82 +23,52 @@
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:padding="10dp"
         android:weightSum="5">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:textColor="#000000"
-                android:text="탁구왕 김탁구" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="30sp"
-                android:textColor="#000000"
-                android:text="vs" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:textColor="#0000F9"
-                android:text="뚜벅이 노그네" />
-
-            <!--<LinearLayout-->
+        <!--<LinearLayout-->
             <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:layout_weight="2"-->
+            <!--android:gravity="center"-->
             <!--android:orientation="vertical">-->
-            <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="다른 상대1"/>-->
 
             <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="다른 상대2"/>-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:gravity="center"-->
+                <!--android:textSize="30sp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="#000000"-->
+                <!--android:text="탁구왕 김탁구" />-->
 
             <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="다른 상대3"/>-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center"-->
+                <!--android:textSize="30sp"-->
+                <!--android:textColor="#000000"-->
+                <!--android:text="vs" />-->
 
             <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="다른 상대4"/>-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:gravity="center"-->
+                <!--android:textSize="30sp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="#0000F9"-->
+                <!--android:text="뚜벅이 노그네" />-->
+        <!--</LinearLayout>-->
 
-            <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="다른 상대5"/>-->
-            <!--</LinearLayout>-->
-        </LinearLayout>
-
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -107,20 +77,14 @@
                 android:id="@+id/frag_list"
                 class="com.github.pocmo.pingpongkim.match.DeviceListFragment"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_weight="1">
-                <!-- Preview: layout=@layout/row_devices -->
-            </fragment>
+                android:layout_height="200dp"/>
 
             <fragment
                 android:id="@+id/frag_detail"
                 class="com.github.pocmo.pingpongkim.match.DeviceDetailFragment"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_weight="1">
-                <!-- Preview: layout=@layout/device_detail -->
-            </fragment>
-        </LinearLayout>
+                android:layout_height="200dp"/>
+        </FrameLayout>
 
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
@@ -129,6 +93,7 @@
         <Button
             android:id="@+id/buttonFindPlayer"
             android:layout_width="300dp"
+            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#FEC141"
@@ -136,7 +101,7 @@
             android:textStyle="bold"
             android:text="상대 찾기" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </LinearLayout>

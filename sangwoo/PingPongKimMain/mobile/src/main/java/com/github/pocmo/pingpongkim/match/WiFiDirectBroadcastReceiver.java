@@ -25,6 +25,7 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
 import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
 import android.util.Log;
+import android.view.View;
 
 import com.github.pocmo.pingpongkim.GlobalClass;
 import com.github.pocmo.pingpongkim.MatchActivity;
@@ -100,9 +101,16 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                 DeviceDetailFragment fragment = (DeviceDetailFragment) activity
                         .getFragmentManager().findFragmentById(R.id.frag_detail);
                 manager.requestConnectionInfo(channel, fragment);
+
+                //match activity 에 상대방의 이름 vs 내 이름을 띄워준다
+                 activity.setData();
             } else {
                 // It's a disconnect
                 activity.resetData();
+                DeviceListFragment fragmentList = (DeviceListFragment) activity
+                        .getFragmentManager().findFragmentById(R.id.frag_list);
+                fragmentList.getView().setVisibility(View.VISIBLE);
+
             }
         } else if (WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action)) {
             DeviceListFragment fragment = (DeviceListFragment) activity.getFragmentManager()

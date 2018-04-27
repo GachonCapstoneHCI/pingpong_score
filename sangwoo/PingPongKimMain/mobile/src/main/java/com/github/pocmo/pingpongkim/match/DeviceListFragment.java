@@ -16,6 +16,7 @@
 
 package com.github.pocmo.pingpongkim.match;
 
+import android.app.Fragment;
 import android.app.ListFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -56,6 +57,7 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
     WifiP2pDevice device;
 
     Button buttonMatch;
+    Fragment thisFragment = this;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -167,10 +169,10 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
 //                        }
                     );
                     ((DeviceListFragment.DeviceActionListener) getActivity()).connect(config);
+                    //리스트 제거
+                    thisFragment.getView().setVisibility(View.GONE);
                 }
             });
-
-
             return v;
 
         }
@@ -183,11 +185,11 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
      */
     public void updateThisDevice(WifiP2pDevice device) {
         this.device = device;
-        Toast.makeText(getActivity().getApplicationContext(), device.deviceName, Toast.LENGTH_SHORT).show();
-        TextView view = (TextView) mContentView.findViewById(R.id.my_name);
-        view.setText(device.deviceName);
-        view = (TextView) mContentView.findViewById(R.id.my_status);
-        view.setText(getDeviceStatus(device.status));
+//        Toast.makeText(getActivity().getApplicationContext(), device.deviceName, Toast.LENGTH_SHORT).show();
+//        TextView view = (TextView) mContentView.findViewById(R.id.my_name);
+//        view.setText(device.deviceName);
+//        view = (TextView) mContentView.findViewById(R.id.my_status);
+//        view.setText(getDeviceStatus(device.status));
     }
 
     @Override
