@@ -132,6 +132,7 @@ public class SensorReceiverService extends WearableListenerService {
                 else if(isBackSwing) msg = "BACK SWING";
                 else msg = "NONE";
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+
                 //튜토리얼일 때는 broadcast 를 뿌려준다
                 if(isTutorial && (msg.equals("SWING") || msg.equals("BACK SWING"))){
                     tutorialCount++;
@@ -142,8 +143,6 @@ public class SensorReceiverService extends WearableListenerService {
                         sendBroadcast(tutorial_intent);
                         if(tutorialCount == 5) isTutorial = false;
                     }
-
-
                 }
             }
             else{

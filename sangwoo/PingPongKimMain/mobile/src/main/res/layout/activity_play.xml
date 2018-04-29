@@ -4,13 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
+    android:background="#FFFFFF"
     tools:context="com.github.pocmo.pingpongkim.PlayActivity">
-    <TextView
-        android:id="@+id/textView"
+
+    <Button
+        android:background="@android:color/holo_blue_light"
+        android:textColor="@android:color/black"
+        android:id="@+id/buttonStartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="경기중입니다! 화이또"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="274dp" />
+        android:text="경기 시작하기"
+        />
+
+    <!--<Button-->
+        <!--android:id="@+id/buttonCounter"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="메시지 전송"-->
+        <!--/>-->
+    <Button
+        android:background="@android:color/holo_red_light"
+        android:textColor="@android:color/black"
+        android:id="@+id/buttonEndGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="경기 끝내기"
+        />
+
 </LinearLayout>

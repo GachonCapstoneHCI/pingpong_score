@@ -31,6 +31,8 @@ import android.net.wifi.p2p.WifiP2pManager.ConnectionInfoListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,13 +45,22 @@ import com.github.pocmo.pingpongkim.GlobalClass;
 import com.github.pocmo.pingpongkim.PlayActivity;
 import com.github.pocmo.pingpongkim.R;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import javax.microedition.khronos.opengles.GL;
 
@@ -66,9 +77,16 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     ProgressDialog progressDialog = null;
     public String partnerName = "NONE";
 
-    TextView textMyname, textYourName;
 
+    TextView textMyname, textYourName;
     Button buttonPlay;
+//    Button buttonPlay, buttonCounter, buttonEnd;
+//    static Queue<String> msgBuffer;
+//    static int counter = 0;
+//    static boolean isPlaying = true;
+//    static boolean isServer;
+//    static int serverPort, myPort;
+//    static String serverIP, myIP;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -131,13 +149,45 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         textYourName = mContentView.findViewById(R.id.yourname);
 
         buttonPlay = mContentView.findViewById(R.id.buttonPlay);
+//        buttonCounter = mContentView.findViewById(R.id.buttonCounter);
+//        buttonEnd = mContentView.findViewById(R.id.buttonEnd);
+//        msgBuffer = new LinkedList<>();
+
         buttonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContentView.getContext(), PlayActivity.class);
                 startActivity(intent);
+                //서버 모드 실행
+//                if(isServer){
+//                    //API 18 이상 부터는 싱글 쓰레드로 작동하지 않게 만들기 위해서 아래와같은 코드를 넣어줘야한다
+//                    new ServerAsyncTask(mContentView.getContext()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                    new ClientAsyncTask(mContentView.getContext()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                }
+//                else{
+//                    new ClientAsyncTask(mContentView.getContext()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                    new ServerAsyncTask(mContentView.getContext()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                }
+
             }
         });
+//        buttonCounter.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(mContentView.getContext(), "counter!", Toast.LENGTH_SHORT).show();
+//                new ClientAsyncTask(mContentView.getContext()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//            }
+//        });
+//        buttonEnd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //end message 보내기
+//                isPlaying = false;
+//            }
+//        });
+
+
+
         return mContentView;
     }
 
@@ -165,10 +215,27 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             progressDialog.dismiss();
         }
         this.info = info;
+
         this.getView().setVisibility(View.VISIBLE);
         DeviceListFragment fragmentList = (DeviceListFragment) getFragmentManager()
                 .findFragmentById(R.id.frag_list);
         fragmentList.getView().setVisibility(View.GONE);
+        if(info.isGroupOwner){
+            GlobalClass.isServer = true;
+            GlobalClass.myPort = 3939;
+            GlobalClass.serverPort = 4949;
+            GlobalClass.serverIP = "";
+            GlobalClass.myIP = info.groupOwnerAddress.toString().substring(1);
+        }
+        else{
+            GlobalClass.isServer = false;
+            GlobalClass.myPort = 4949;
+            GlobalClass.serverPort = 3939;
+            GlobalClass.myIP = "";
+            GlobalClass.serverIP = info.groupOwnerAddress.toString().substring(1);
+        }
+        Log.e(GlobalClass.TAG,  "my IP : " + GlobalClass.myIP);
+        Log.e(GlobalClass.TAG,  "server IP : " + GlobalClass.serverIP);
 
         //텍스트 설정
         //textYourName.setText(partnerName);
@@ -237,89 +304,246 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
      * A simple server socket that accepts connection and writes some data on
      * the stream.
      */
-    public static class FileServerAsyncTask extends AsyncTask<Void, Void, String> {
-
-        private Context context;
-        private TextView statusText;
+//    public static class FileServerAsyncTask extends AsyncTask<Void, Void, String> {
+//
+//        private Context context;
+//        private TextView statusText;
 
         /**
-         * @param context
-         * @param statusText
-         */
-        public FileServerAsyncTask(Context context, View statusText) {
-            this.context = context;
-            this.statusText = (TextView) statusText;
-        }
+//         * @param context
+//         * @param statusText
+//         */
+//        public FileServerAsyncTask(Context context, View statusText) {
+//            this.context = context;
+//            this.statusText = (TextView) statusText;
+//        }
+//
+//        @Override
+//        protected String doInBackground(Void... params) {
+//            try {
+//                ServerSocket serverSocket = new ServerSocket(8988);
+//                Log.d(GlobalClass.TAG, "Server: Socket opened");
+//                Socket client = serverSocket.accept();
+//                Log.d(GlobalClass.TAG, "Server: connection done");
+//                final File f = new File(Environment.getExternalStorageDirectory() + "/"
+//                        + context.getPackageName() + "/wifip2pshared-" + System.currentTimeMillis()
+//                        + ".jpg");
+//
+//                File dirs = new File(f.getParent());
+//                if (!dirs.exists())
+//                    dirs.mkdirs();
+//                f.createNewFile();
+//
+//                Log.d(GlobalClass.TAG, "server: copying files " + f.toString());
+//                InputStream inputstream = client.getInputStream();
+//                //copyFile(inputstream, new FileOutputStream(f));
+//                serverSocket.close();
+//                return f.getAbsolutePath();
+//            } catch (IOException e) {
+//                Log.e(GlobalClass.TAG, e.getMessage());
+//                return null;
+//            }
+//        }
+//
+//        /*
+//         * (non-Javadoc)
+//         * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+//         */
+//        @Override
+//        protected void onPostExecute(String result) {
+//            if (result != null) {
+//                statusText.setText("File copied - " + result);
+//                Intent intent = new Intent();
+//                intent.setAction(Intent.ACTION_VIEW);
+//                intent.setDataAndType(Uri.parse("file://" + result), "image/*");
+//                context.startActivity(intent);
+//            }
+//
+//        }
+//
+//        /*
+//         * (non-Javadoc)
+//         * @see android.os.AsyncTask#onPreExecute()
+//         */
+//        @Override
+//        protected void onPreExecute() {
+//            statusText.setText("Opening a server socket");
+//        }
+//
+//    }
 
-        @Override
-        protected String doInBackground(Void... params) {
-            try {
-                ServerSocket serverSocket = new ServerSocket(8988);
-                Log.d(GlobalClass.TAG, "Server: Socket opened");
-                Socket client = serverSocket.accept();
-                Log.d(GlobalClass.TAG, "Server: connection done");
-                final File f = new File(Environment.getExternalStorageDirectory() + "/"
-                        + context.getPackageName() + "/wifip2pshared-" + System.currentTimeMillis()
-                        + ".jpg");
+//    public static boolean copyFile(InputStream inputStream, OutputStream out) {
+//        byte buf[] = new byte[1024];
+//        int len;
+//        try {
+//            while ((len = inputStream.read(buf)) != -1) {
+//                out.write(buf, 0, len);
+//
+//            }
+//            out.close();
+//            inputStream.close();
+//        } catch (IOException e) {
+//            Log.d(GlobalClass.TAG, e.toString());
+//            return false;
+//        }
+//        return true;
+//    }
 
-                File dirs = new File(f.getParent());
-                if (!dirs.exists())
-                    dirs.mkdirs();
-                f.createNewFile();
+//    /**
+//     * A simple server socket that accepts connection and writes some data on
+//     * the stream.
+//     */
+//    public static class ServerAsyncTask extends AsyncTask<Void, Void, String> {
+//
+//        private Context context;
+//        //private TextView statusText;
+//
+//        /**
+//         * @param context
+//         * //@param statusText
+//         */
+//        public ServerAsyncTask(Context context) {
+//            this.context = context;
+//            //this.statusText = (TextView) statusText;
+//        }
+//
+//        @Override
+//        protected String doInBackground(Void... params) {
+//            try {
+//                ServerSocket serverSocket = new ServerSocket(myPort);
+//                if(!isServer) myIP = serverSocket.getInetAddress().toString().substring(1);
+//                Log.e(GlobalClass.TAG, "Server: Socket opened - " + myIP + "/" + myPort);
+//                //Toast.makeText(context, "Server: Socket opened", Toast.LENGTH_SHORT).show();
+//
+//                while(isPlaying){
+//                    //연결 요청을 기다린다
+//                    Socket clientSocket = serverSocket.accept();
+//                    Log.e(GlobalClass.TAG, "Server: Client address : " + clientSocket.getInetAddress().toString().substring(1));
+//                    //clientsocket : 통신 작업 수행!!
+//                    serverIP = clientSocket.getInetAddress().toString().substring(1);
+//
+//                    //System.out.println( addr.getHostAddress() + "님이 접속 !!");
+//                    //Toast.makeText(context, addr.getHostAddress() , Toast.LENGTH_SHORT).show();
+//
+//                    InputStream is = clientSocket.getInputStream();  // 클라이언트와 연결된 입력 통로. 입력받은 것을 저장시킴.
+//                    BufferedReader br = new BufferedReader( new InputStreamReader( is ));
+//                    //readLine 받을 때까지 기다리나?
+//                    String msg = br.readLine();
+//                    Log.e(GlobalClass.TAG, "Server: message received - " + msg);
+//
+//                    br.close();
+//                    is.close();
+//                    clientSocket.close();
+//                }
+//                serverSocket.close();
+//
+//                return "server connection end!";
+//            } catch (IOException e) {
+//                Log.e(GlobalClass.TAG, e.getMessage());
+//                return null;
+//            }
+//        }
+//
+//        /*
+//         * (non-Javadoc)
+//         * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+//         */
+//        @Override
+//        protected void onPostExecute(String result) {
+//            //if (result != null) {
+//                //statusText.setText("File copied - " + result);
+////                Intent intent = new Intent();
+////                intent.setAction(Intent.ACTION_VIEW);
+////                intent.setDataAndType(Uri.parse("file://" + result), "image/*");
+////                context.startActivity(intent);
+//           // }
+//
+//        }
+//
+//        /*
+//         * (non-Javadoc)
+//         * @see android.os.AsyncTask#onPreExecute()
+//         */
+//        @Override
+//        protected void onPreExecute() {
+//            //statusText.setText("Opening a server socket");
+//        }
+//
+//    }
+//
+//
+//
+//    /**
+//     * A simple server socket that accepts connection and writes some data on
+//     * the stream.
+//     */
+//    public static class ClientAsyncTask extends AsyncTask<Void, Void, String> {
+//
+//        private Context context;
+//        //private TextView statusText;
+//
+//        /**
+//         * @param context
+//         * //@param statusText
+//         */
+//        public ClientAsyncTask(Context context) {
+//            this.context = context;
+//            //this.statusText = (TextView) statusText;
+//        }
+//
+//        @Override
+//        protected String doInBackground(Void... params) {
+//            try {
+//                //아직 serverIP 에 대한 초기화가 안되면 기다린다.
+//                while(isServer && serverIP.equals(""));
+//                Socket socket = new Socket(serverIP, serverPort);
+//                Log.e(GlobalClass.TAG, "Client: Socket opened - " + serverIP + "/" + serverPort);
+//                //clientsocket : 통신 작업 수행!!
+//
+//                OutputStream os = socket.getOutputStream();  // 클라이언트와 연결된 입력 통로. 입력받은 것을 저장시킴.
+//                PrintWriter pw = new PrintWriter( new OutputStreamWriter( os ));
+//                //버퍼에 값이 생길 때만 메시지를 전송한다
+//                //먼저 시작 메시지를 보낸다
+//                pw.write(Integer.toString(counter++));
+//                Log.e(GlobalClass.TAG, "Client: write - " + Integer.toString(counter-1));
+//                //readStatus 가  false 가 되면 reading 을 중지한다
+//                pw.close();
+//                os.close();
+//                socket.close();
+//
+//                return "server connection end!";
+//            } catch (IOException e) {
+//                Log.e(GlobalClass.TAG, e.getMessage());
+//                return null;
+//            }
+//        }
+//
+//        /*
+//         * (non-Javadoc)
+//         * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+//         */
+//        @Override
+//        protected void onPostExecute(String result) {
+//            //if (result != null) {
+//            //statusText.setText("File copied - " + result);
+////                Intent intent = new Intent();
+////                intent.setAction(Intent.ACTION_VIEW);
+////                intent.setDataAndType(Uri.parse("file://" + result), "image/*");
+////                context.startActivity(intent);
+//            // }
+//
+//        }
+//
+//        /*
+//         * (non-Javadoc)
+//         * @see android.os.AsyncTask#onPreExecute()
+//         */
+//        @Override
+//        protected void onPreExecute() {
+//            //statusText.setText("Opening a server socket");
+//        }
+//
+//    }
 
-                Log.d(GlobalClass.TAG, "server: copying files " + f.toString());
-                InputStream inputstream = client.getInputStream();
-                copyFile(inputstream, new FileOutputStream(f));
-                serverSocket.close();
-                return f.getAbsolutePath();
-            } catch (IOException e) {
-                Log.e(GlobalClass.TAG, e.getMessage());
-                return null;
-            }
-        }
-
-        /*
-         * (non-Javadoc)
-         * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-         */
-        @Override
-        protected void onPostExecute(String result) {
-            if (result != null) {
-                statusText.setText("File copied - " + result);
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setDataAndType(Uri.parse("file://" + result), "image/*");
-                context.startActivity(intent);
-            }
-
-        }
-
-        /*
-         * (non-Javadoc)
-         * @see android.os.AsyncTask#onPreExecute()
-         */
-        @Override
-        protected void onPreExecute() {
-            statusText.setText("Opening a server socket");
-        }
-
-    }
-
-    public static boolean copyFile(InputStream inputStream, OutputStream out) {
-        byte buf[] = new byte[1024];
-        int len;
-        try {
-            while ((len = inputStream.read(buf)) != -1) {
-                out.write(buf, 0, len);
-
-            }
-            out.close();
-            inputStream.close();
-        } catch (IOException e) {
-            Log.d(GlobalClass.TAG, e.toString());
-            return false;
-        }
-        return true;
-    }
 
 }
