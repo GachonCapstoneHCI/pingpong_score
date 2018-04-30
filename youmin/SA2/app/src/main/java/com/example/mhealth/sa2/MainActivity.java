@@ -131,6 +131,7 @@ public class MainActivity extends Activity implements OnClickListener{
         @Override
         protected void onProgressUpdate(double[]... toTransform) {
             int count = 0;
+            int outcount = 0;
             canvas.drawColor(Color.BLACK);
 
             try{
@@ -161,17 +162,21 @@ public class MainActivity extends Activity implements OnClickListener{
                 int downy = (int) (100 - (toTransform[0][i] * 10));
                 int upy = 100;
 
+                if(i > 80 && i < 180){
+                    if(toTransform[0][i] > 10 || toTransform[0][i] < -15){
+                        outcount++;
+                    }
+                }
+
                 if(i > 180 && i < 270) {
                     toTransform[0][i] = toTransform[0][i] * 4;
                     if(toTransform[0][i] > 60 || toTransform[0][i] < -60)
                         count++;
                 }
-
-
                 canvas.drawLine(x, downy, x, upy, paint);
             }
 
-            if(count > 20) {
+            if(count > 20 && outcount < 20) {
                 Toast.makeText(getApplicationContext(), "탁구공이 튀겼습니다!", Toast.LENGTH_SHORT).show();
             }
             imageView.invalidate();

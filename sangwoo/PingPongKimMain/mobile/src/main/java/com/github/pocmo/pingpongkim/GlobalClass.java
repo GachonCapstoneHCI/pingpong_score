@@ -18,4 +18,7 @@ public class GlobalClass {
     public static boolean isFirst = true;
     public static String playerType = "";
     public static ArrayList<String> expectedList;
+    public static boolean isServing = true;
+    public static String nowExpecting = "";
+    public static int expectingIndex = 0;
 }

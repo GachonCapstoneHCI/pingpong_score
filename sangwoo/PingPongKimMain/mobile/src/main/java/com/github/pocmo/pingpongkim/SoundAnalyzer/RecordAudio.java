@@ -86,7 +86,6 @@ public class RecordAudio extends AsyncTask<Void, double[], Void> {
             audioRecord.stop();
         }catch(Throwable t){
             Log.e("AudioRecord", "Recording Failed / " + t.getMessage());
-
         }
 
         return null;
@@ -100,6 +99,7 @@ public class RecordAudio extends AsyncTask<Void, double[], Void> {
     @Override
     protected void onProgressUpdate(double[]... toTransform) {
         int count = 0;
+        int outcount = 0;
 
         Log.e(GlobalClass.TAG, "unit-----------------------------------");
         for(int i = 0; i < toTransform[0].length; i++){
@@ -107,6 +107,12 @@ public class RecordAudio extends AsyncTask<Void, double[], Void> {
 //            int x = i;
 //            int downy = (int) (100 - (toTransform[0][i] * 10));
 //            int upy = 100;
+
+            if(i > 80 && i < 180){
+                if(toTransform[0][i] > 10 || toTransform[0][i] < -15){
+                    outcount++;
+                }
+            }
 
             if(i > 180 && i < 270) {
                 toTransform[0][i] = toTransform[0][i] * 4;
@@ -117,7 +123,7 @@ public class RecordAudio extends AsyncTask<Void, double[], Void> {
             }
         }
 
-        if(count > 20) {
+        if(count > 20 && outcount < 20) {
             //
             Handler handler;
             handler=  new Handler(context.getMainLooper());

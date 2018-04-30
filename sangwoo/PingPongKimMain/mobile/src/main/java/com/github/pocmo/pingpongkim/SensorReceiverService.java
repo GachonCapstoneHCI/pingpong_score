@@ -191,7 +191,7 @@ public class SensorReceiverService extends WearableListenerService {
     }
 
 
-    //swing detect alogrithm
+    //swing detect algorithm
     boolean isSkipping = false;
     int skipCount = 0;
     final int baseThreshold = 200;

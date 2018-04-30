@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -87,6 +88,7 @@ public class PlayActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(SwingBroadcastReceiver); //리시버 등록 해제
+        deinitialize(); //경기시작할 때 설정했던 것 초기화
     }
 
     /**
@@ -103,9 +105,11 @@ public class PlayActivity extends AppCompatActivity {
                         if(!result.equals("-")) {
                             Toast.makeText(context, result , Toast.LENGTH_SHORT).show();
                             //처음인데 서브 스윙이라고 판단이 될 때 A로 설정
-                            if(GlobalClass.isFirst){
+                            if(GlobalClass.isFirst) {
                                 initialize("A", true);
                             }
+                            //스윙이 감지되면 상대방에게 메시지 전송
+                            new ClientAsyncTask().execute(GlobalClass.playerType + "SWING");
                         }
                         break;
                 }
@@ -120,9 +124,35 @@ public class PlayActivity extends AppCompatActivity {
         GlobalClass.isFirst = false;
         GlobalClass.isServe = isServe; //현재 서브임
         GlobalClass.playerType = type;   //플레이어 타입 설정
-        //A 가 기대하는 값 리스트 설정
-        GlobalClass.expectedList.add(GlobalClass.playerType + "TABLE");
-        GlobalClass.expectedList.add(GlobalClass.playerType + "SWING");
+        //초기화할 때 B type 이면 expected list를 서브용으로 설정
+        if(GlobalClass.playerType.equals("B"))  GlobalClass.expectedList.add("ATABLE");
+        //초기화할 때 A type 이면 expected list 를 기본으로 설정
+        else setExpectedList("A");
+    }
+
+    static void deinitialize(){
+        GlobalClass.isFirst = true;
+        GlobalClass.isServe = false; //현재 서브임
+        GlobalClass.playerType = "";   //플레이어 타입 설정
+        GlobalClass.nowExpecting = "";
+        GlobalClass.expectingIndex = 0;
+        GlobalClass.expectedList.clear();
+    }
+
+
+    static void setExpectedList(String type){
+        if(!GlobalClass.expectedList.isEmpty()) GlobalClass.expectedList.clear();
+        switch (type){
+            case "A":
+                GlobalClass.expectedList.add("BTABLE");
+                GlobalClass.expectedList.add("BSWING");
+                break;
+            case "B":
+                GlobalClass.expectedList.add("ATABLE");
+                GlobalClass.expectedList.add("ASWING");
+                break;
+        }
+
     }
 
     /**
@@ -155,6 +185,17 @@ public class PlayActivity extends AppCompatActivity {
                     if(GlobalClass.isFirst){
                         initialize("B", false);
                     }
+                    //처음 바로 다음에 오는 메시지에 대해서 앞으로 진행될 Expected list 를 설정한다
+                    if(!GlobalClass.isFirst && GlobalClass.isServing){
+                        GlobalClass.isServing = false;
+                        setExpectedList("B");
+                    }
+
+                    if(msg.equals(GlobalClass.nowExpecting)) Log.e(GlobalClass.TAG, "expecting OK");
+                    else Log.e(GlobalClass.TAG, "expecting NOT OK");
+
+                    //now expecting 업데이트
+                    GlobalClass.nowExpecting = GlobalClass.expectedList.get((GlobalClass.expectingIndex++)%2);
 
                     //리소스 반환
                     br.close();
@@ -174,8 +215,11 @@ public class PlayActivity extends AppCompatActivity {
      * 클라이언트 역할의 쓰레드, 메시지 전송기능 담당
      */
     public static class ClientAsyncTask extends AsyncTask<Void, Void, Void> {
-
+        String msg = "";
         public ClientAsyncTask() {}
+        public ClientAsyncTask(String strMsg) {
+            msg = strMsg;
+        }
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -189,7 +233,6 @@ public class PlayActivity extends AppCompatActivity {
                 PrintWriter pw = new PrintWriter( new OutputStreamWriter( os ));
                 pw.write(Integer.toString(GlobalClass.counter++));
                 Log.e(GlobalClass.TAG, "Client: write - " + Integer.toString(GlobalClass.counter-1));
-                //
 
                 //리소스 반환
                 pw.close();
