@@ -23,22 +23,32 @@ import com.github.pocmo.pingpongkim.match.DeviceDetailFragment;
 import com.github.pocmo.pingpongkim.match.DeviceListFragment;
 import com.github.pocmo.pingpongkim.match.WiFiDirectBroadcastReceiver;
 
+/**
+ * match activity
+ * device list frag : 연결 가능한 상대 검색
+ * wifi direct 로 다른 상대 검색
+ * 검색한 상대와 연결
+ * play activity  로 이동
+ * device detail frag : 연결 후 보이는 화면
+ *
+ */
 public class MatchActivity extends AppCompatActivity implements WifiP2pManager.ChannelListener, DeviceListFragment.DeviceActionListener {
 
     public String partnerDeviceName = "NONE";
     //뷰
-    Button buttonFindPlayer;
-    View  fragmentList, fragmentDetails;
-    boolean isMatched = false;
+    private Button buttonFindPlayer;
+    private View fragmentList, fragmentDetails;
+    boolean isMatched = false;  //상대와 연결 성사 여부
 
     //wifi direct
     private WifiP2pManager manager;
     private boolean isWifiP2pEnabled = false;
     private boolean retryChannel = false;
-
-    private final IntentFilter intentFilter = new IntentFilter();
     private WifiP2pManager.Channel channel;
+
+    //브로드캐스트 리시버
     private BroadcastReceiver receiver = null;
+    private final IntentFilter intentFilter = new IntentFilter();
 
 
     @Override
@@ -46,33 +56,17 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match);
 
-
+        //뷰 객체화
         fragmentDetails = findViewById(R.id.frag_detail);
         fragmentList = findViewById(R.id.frag_list);
-
-
-        // add necessary intent values to be matched.
-
-        intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
-        intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
-        intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
-        intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
-
-        //초기화
-        manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
-        channel = manager.initialize(this, getMainLooper(), null);
-
         buttonFindPlayer = (Button)findViewById(R.id.buttonFindPlayer);
-
 
         //연결을 초기화하는 과정
         buttonFindPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
                 if(!isMatched){
-                    //fragmentList.setVisibility(View.VISIBLE);
                     //상대 매칭 서비스 시작 (wifi direct)
                     if (!isWifiP2pEnabled) {
                         Toast.makeText(MatchActivity.this, "wifi p2p 가 사용불가합니다",
@@ -89,26 +83,33 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
 
                         @Override
                         public void onSuccess() {
-                            Toast.makeText(MatchActivity.this, "Discovery Initiated",
+                            Toast.makeText(MatchActivity.this, "상대를 찾는 중...",
                                     Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onFailure(int reasonCode) {
-                            Toast.makeText(MatchActivity.this, "Discovery Failed : " + reasonCode,
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MatchActivity.this, "상대를 찾는데 실패했습니다!", Toast.LENGTH_SHORT);
                         }
                     });
                 }
                 else{
                     //연결 끊기
-                   disconnect();
+                    disconnect();
                 }
             }
 
         });
 
+        //make intent filter
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
 
+        //wifi direct 초기화
+        manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+        channel = manager.initialize(this, getMainLooper(), null);
     }
 
     @Override
@@ -117,7 +118,6 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
         //리시버 등록
         receiver = new WiFiDirectBroadcastReceiver(manager, channel, this);
         registerReceiver(receiver, intentFilter);
-
     }
 
     @Override
@@ -135,24 +135,23 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
     }
 
     /**
-     * Remove all peers and clear all fields. This is called on
-     * BroadcastReceiver receiving a state change event.
-     *
-     * 프래그먼트 데이터들을 초기화 한다
+     * 프래그먼트 데이터들을 초기화
      */
     public void resetData() {
         DeviceListFragment fragmentList = (DeviceListFragment) getFragmentManager()
                 .findFragmentById(R.id.frag_list);
         DeviceDetailFragment fragmentDetails = (DeviceDetailFragment) getFragmentManager()
                 .findFragmentById(R.id.frag_detail);
+        //리스트 프래그먼트 초기화
         if (fragmentList != null) {
             fragmentList.clearPeers();
         }
+        //디테일 프래그먼트 초기화
         if (fragmentDetails != null) {
             fragmentDetails.resetViews();
         }
 
-        //버튼 텍스트 복귀
+        //매칭 전 상태로 복귀
         isMatched = false;
         buttonFindPlayer.setText("상대 찾기");
         getFragmentManager().findFragmentById(R.id.frag_detail).getView().setVisibility(View.GONE);
@@ -160,6 +159,9 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
     }
 
 
+    /**
+     * 매칭 목록이 떴을 때
+     */
     public void setData(){
         isMatched = true;
         buttonFindPlayer.setText("연결 해제");
@@ -167,57 +169,57 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
         getFragmentManager().findFragmentById(R.id.frag_list).getView().setVisibility(View.GONE);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.action_items, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.atn_direct_enable:
-                if (manager != null && channel != null) {
-
-                    // Since this is the system wireless settings activity, it's
-                    // not going to send us a result. We will be notified by
-                    // WiFiDeviceBroadcastReceiver instead.
-
-                    startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
-                } else {
-                    Log.e(GlobalClass.TAG, "channel or manager is null");
-                }
-                return true;
-
-            case R.id.atn_direct_discover:
-                if (!isWifiP2pEnabled) {
-                    Toast.makeText(MatchActivity.this, "p2p warning",
-                            Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                final DeviceListFragment fragment = (DeviceListFragment) getFragmentManager()
-                        .findFragmentById(R.id.frag_list);
-                fragment.onInitiateDiscovery();
-                manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
-
-                    @Override
-                    public void onSuccess() {
-                        Toast.makeText(MatchActivity.this, "Discovery Initiated",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onFailure(int reasonCode) {
-                        Toast.makeText(MatchActivity.this, "Discovery Failed : " + reasonCode,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.action_items, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.atn_direct_enable:
+//                if (manager != null && channel != null) {
+//
+//                    // Since this is the system wireless settings activity, it's
+//                    // not going to send us a result. We will be notified by
+//                    // WiFiDeviceBroadcastReceiver instead.
+//
+//                    startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+//                } else {
+//                    Log.e(GlobalClass.TAG, "channel or manager is null");
+//                }
+//                return true;
+//
+//            case R.id.atn_direct_discover:
+//                if (!isWifiP2pEnabled) {
+//                    Toast.makeText(MatchActivity.this, "p2p warning",
+//                            Toast.LENGTH_SHORT).show();
+//                    return true;
+//                }
+//                final DeviceListFragment fragment = (DeviceListFragment) getFragmentManager()
+//                        .findFragmentById(R.id.frag_list);
+//                fragment.onInitiateDiscovery();
+//                manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
+//
+//                    @Override
+//                    public void onSuccess() {
+//                        Toast.makeText(MatchActivity.this, "Discovery Initiated",
+//                                Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onFailure(int reasonCode) {
+//                        Toast.makeText(MatchActivity.this, "Discovery Failed : " + reasonCode,
+//                                Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 
     /**
      * 서비스에서 device 정보를 받아오면 프래그먼트에 뿌려주는 역할을 함
@@ -225,14 +227,14 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
      */
     @Override
     public void showDetails(WifiP2pDevice device) {
-        DeviceDetailFragment fragment = (DeviceDetailFragment) getFragmentManager()
+        DeviceDetailFragment fragmentDetails = (DeviceDetailFragment) getFragmentManager()
                 .findFragmentById(R.id.frag_detail);
-        fragment.showDetails(device);
-
+        fragmentDetails.showDetails(device);
     }
 
+
     /**
-     *
+     * 매칭
      * @param config
      */
     @Override
@@ -241,13 +243,13 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
 
             @Override
             public void onSuccess() {
-                // WiFiDirectBroadcastReceiver will notify us. Ignore for now.
+                //fragment details 설정
                 setData();
             }
 
             @Override
             public void onFailure(int reason) {
-                Toast.makeText(MatchActivity.this, "Connect failed. Retry.",
+                Toast.makeText(MatchActivity.this, "매칭에 실패했습니다. 다시 시도하세요",
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -275,54 +277,48 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
     }
 
     /**
-     * 연결이 해제
+     * 연결 해제 시 실행되는 콜백함수
      */
     @Override
     public void onChannelDisconnected() {
-        // we will try once more
         if (manager != null && !retryChannel) {
-            Toast.makeText(this, "Channel lost. Trying again", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "채널을 잃었습니다. 다시 시도하세요", Toast.LENGTH_LONG).show();
             //프래그먼트 초기화
             resetData();
             retryChannel = true;
+            //연결 재시도
             manager.initialize(this, getMainLooper(), this);
         } else {
             Toast.makeText(this,
-                    "Severe! Channel is probably lost premanently. Try Disable/Re-Enable P2P.",
+                    "채널이 영구적으로 연결을 잃었습니다. 연결을 다시 시도해주세요",
                     Toast.LENGTH_LONG).show();
         }
-
     }
 
     @Override
     public void cancelDisconnect() {
 
-        /*
-         * A cancel abort request by user. Disconnect i.e. removeGroup if
-         * already connected. Else, request WifiP2pManager to abort the ongoing
-         * request
-         */
         if (manager != null) {
-            final DeviceListFragment fragment = (DeviceListFragment) getFragmentManager()
+            final DeviceListFragment fragmentList = (DeviceListFragment) getFragmentManager()
                     .findFragmentById(R.id.frag_list);
-            if (fragment.getDevice() == null
-                    || fragment.getDevice().status == WifiP2pDevice.CONNECTED) {
+            if (fragmentList.getDevice() == null
+                    || fragmentList.getDevice().status == WifiP2pDevice.CONNECTED) {
                 disconnect();
-            } else if (fragment.getDevice().status == WifiP2pDevice.AVAILABLE
-                    || fragment.getDevice().status == WifiP2pDevice.INVITED) {
+            } else if (fragmentList.getDevice().status == WifiP2pDevice.AVAILABLE
+                    || fragmentList.getDevice().status == WifiP2pDevice.INVITED) {
 
                 manager.cancelConnect(channel, new WifiP2pManager.ActionListener() {
 
                     @Override
                     public void onSuccess() {
-                        Toast.makeText(MatchActivity.this, "Aborting connection",
+                        Toast.makeText(MatchActivity.this, "연결 취소",
                                 Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(int reasonCode) {
                         Toast.makeText(MatchActivity.this,
-                                "Connect abort request failed. Reason Code: " + reasonCode,
+                                "연결 취소에 실패했습니다. 코드: " + reasonCode,
                                 Toast.LENGTH_SHORT).show();
                     }
                 });

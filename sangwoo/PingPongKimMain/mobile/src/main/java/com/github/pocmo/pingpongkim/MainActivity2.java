@@ -20,7 +20,7 @@ import com.github.pocmo.pingpongkim.MainPages.Tab1;
 import com.github.pocmo.pingpongkim.MainPages.Tab2;
 
 /**
- * Tab1, Tab2, Tab3 이 있는 메인 페이지
+ * Tab1, Tab2 이 있는 메인 페이지
  */
 public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentInteractionListener,
         Tab2.OnFragmentInteractionListener2{
@@ -28,19 +28,16 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private MyReceiver myReceiver;
     private ViewPager mViewPager;
-    private final int numOfPage = 2;
+    private final int numOfPage = 2;    //탭 개수
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-
         //툴바 설정
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // 뷰페이저 설정
@@ -64,20 +61,6 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
         return true;
     }
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        //툴바 설정 메뉴
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
     //Tab1 fragment
     @Override
     public void onFragmentInteraction(Uri uri) {}
@@ -86,7 +69,6 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
      * 뷰페이저 관리
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -108,15 +90,16 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
         }
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //리시버 해제
-        unregisterReceiver(myReceiver);
+        unregisterReceiver(myReceiver); //리시버 해제
     }
 
-    //서비스에서 브로드캐스트 받아서 실행
+    /*
+     PLAY 액션이 들어오면 PLAY ACTIVITY 를 띄움
+     TODO : PLAY 액션 : 경기 시작 버튼 누르면?
+     */
     class MyReceiver extends BroadcastReceiver{
         @Override
         public void onReceive(Context context, Intent intent) {

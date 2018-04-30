@@ -6,8 +6,11 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:background="#FFFFFF"
+    android:orientation="vertical"
     tools:context="com.github.pocmo.pingpongkim.PlayActivity">
 
+
+    <!-- 없어져야 함-->
     <Button
         android:background="@android:color/holo_blue_light"
         android:textColor="@android:color/black"
@@ -17,12 +20,7 @@
         android:text="경기 시작하기"
         />
 
-    <!--<Button-->
-        <!--android:id="@+id/buttonCounter"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="메시지 전송"-->
-        <!--/>-->
+    <!-- 없어져야 함-->
     <Button
         android:background="@android:color/holo_red_light"
         android:textColor="@android:color/black"
@@ -32,4 +30,9 @@
         android:text="경기 끝내기"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textLog"
+        />
 </LinearLayout>

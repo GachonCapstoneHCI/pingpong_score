@@ -18,35 +18,35 @@ import com.github.pocmo.pingpongkim.R;
 
 /**
  * A simple {@link Fragment} subclass.
+ * Tutorial1 : 회원가입 페이지
+ *
+ *
+ * TODO :
  * 회원가입 페이지 (사용자 닉네임, 나이, 키, 몸무게, 탁구 실력정도 등)
  * 서버 쪽에 데이터를 보내서 가능하면 다음 페이지로 넘어가고,
- * 데이터가 보내지지 않으면 다음 페이지로 넘아가지 않음
+ * 데이터가 보내지지 않으면 다음 페이지로 넘어가지 않음
  */
 public class Tutorial1 extends Tutorial {
 
-    Tutorial.TutorialNextPage mListener;
+    private Tutorial.TutorialNextPage mListener;
 
     //뷰
-    EditText userName, userPassword, userWeight, userHeight;
-    RadioGroup userSkills;
+    private EditText userName, userPassword, userWeight, userHeight;    //사용자 정보
+    private RadioGroup userSkills;  //탁구 실력 정도 선택
+    private Button buttonUserInfoSubmit;    //제출 버튼
 
-    //Spinner userAbilityLevelSpinner;
-    Button buttonUserInfoSubmit;
-
-    public Tutorial1() {
-        // Required empty public constructor
-    }
+    public Tutorial1() {}
 
     @Override
     public void onAttach(Activity activity) {
 
-        //액티비티가 인터페이스를 구현하지 않으면 에러를 발생시킨다
+        //다음 페이지로 이동하는 리스너가 구현되었는지 확인
         super.onAttach(activity);
         try{
             mListener = (Tutorial.TutorialNextPage)activity;
         }
         catch (ClassCastException e){
-            throw new ClassCastException(activity.toString() + " must implement TutorialNextPage");
+            throw new ClassCastException(activity.toString() + " TutorialNextPage를 구현해아 함");
         }
     }
 
@@ -55,8 +55,6 @@ public class Tutorial1 extends Tutorial {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_tutorial1, container, false);
-
-
         //뷰 객체화
         userName = rootView.findViewById(R.id.userNickname);
         userPassword = rootView.findViewById(R.id.userPassword);
@@ -65,9 +63,7 @@ public class Tutorial1 extends Tutorial {
         userSkills = rootView.findViewById(R.id.userSkill);
         int id = userSkills.getCheckedRadioButtonId();
 
-        //서버로 전송
-
-
+        //TODO : 서버로 전송
 
         //TODO : 사용자 정보 입력 뷰 메모리에 올리기
         //버튼
@@ -76,7 +72,6 @@ public class Tutorial1 extends Tutorial {
             @Override
             public void onClick(View v) {
                 //TODO : 사용자 정보 서버로 전송
-
 
                 boolean isSuccess = true;
 

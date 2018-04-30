@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                    tagnameText = tagname.getText().toString();
 //                }
 //
-//                RemoteSensorManager.getInstance(MainActivity.this).addTag(tagnameText);
+//                RemoteSensorManager.getInstance(SAMainActivity.this).addTag(tagnameText);
 //            }
 //        });
 //

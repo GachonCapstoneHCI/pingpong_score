@@ -22,13 +22,14 @@ import com.github.pocmo.pingpongkim.SensorReceiverService;
 
 /**
  * A simple {@link Fragment} subclass.
+ * Tutorial3 : 사용자의 스윙 폼 데이터 수집하여 칼리브레이션하는 페이지
  */
 public class Tutorial3 extends Tutorial {
-    Tutorial.TutorialNextPage mListener;
-    MyReceiver myReceiver;
-    ViewGroup rootView;
-    TextView[] tutorialGuideTextViews;
-    private int count = 0;
+    private Tutorial.TutorialNextPage mListener;    //다음 페이지 이동 리스너
+    private MyReceiver myReceiver;  //튜토리얼 스윙에 대한 브로드캐스트 리시버
+    private ViewGroup rootView;
+    private TextView[] tutorialGuideTextViews;  //5가지의 텍스트
+    private int count = 0;  //스윙 횟수
 
     //뷰
     private Button buttonTemp;
@@ -37,36 +38,33 @@ public class Tutorial3 extends Tutorial {
     @Override
     public void onAttach(Activity activity) {
 
-        //액티비티가 인터페이스를 구현하지 않으면 에러를 발생시킨다
+        //다음 페이지로 이동하는 리스너가 구현되었는지 확인
         super.onAttach(activity);
         try{
             mListener = (Tutorial.TutorialNextPage)activity;
         }
         catch (ClassCastException e){
-            throw new ClassCastException(activity.toString() + " must implement TutorialNextPage");
+            throw new ClassCastException(activity.toString() + " TutorialNextPage를 구현해아 함");
         }
     }
 
-
     public Tutorial3() {}
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_tutorial3, container, false);
 
-        //뷰 초기화
+        //뷰 객체화
         buttonTemp = (Button)rootView.findViewById(R.id.buttonTemp);
-        //id 가 3이면 메인 액티비티(개발용 그래프)를 보여준다
+        //id 가 3이면 메인 액티비티(개발용 그래프)를 보여줌
         buttonTemp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onMoveNextPage(3);
             }
         });
-        //id 가 4면 메인 액티비티2(메인 페이지)를 보여준다
+        //id 가 4면 메인 액티비티2(메인 페이지)를 보여줌
         buttonTemp2 = (Button)rootView.findViewById(R.id.buttonTemp2);
         buttonTemp2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,15 +73,10 @@ public class Tutorial3 extends Tutorial {
             }
         });
 
-        //튜토리얼 가이드 텍스트 (1~5단계까지 있음)
+        //튜토리얼 가이드 텍스트 (1~5단계)
         tutorialGuideTextViews = new TextView[5];
-        //tutorialGuideTextViews[0] = rootView.findViewById(R.id.tutorialSwingGuideText1);
-        //tutorialGuideTextViews[1] = rootView.findViewById(R.id.tutorialSwingGuideText2);
-        //tutorialGuideTextViews[2] = rootView.findViewById(R.id.tutorialSwingGuideText3);
-        //tutorialGuideTextViews[3] = rootView.findViewById(R.id.tutorialSwingGuideText4);
-        //tutorialGuideTextViews[4] = rootView.findViewById(R.id.tutorialSwingGuideText5);
 
-        //리시버 등록 : 센서 읽는 서비스에서 튜토리얼 스윙했다는 메시지를 보내면 받는다
+        //리시버 등록 : 센서 읽는 서비스에서 튜토리얼 스윙했다는 메시지를 보내면 받음
         myReceiver = new MyReceiver();
         rootView.getContext().registerReceiver(myReceiver, makeIntentFilter());
         return rootView;
@@ -92,12 +85,11 @@ public class Tutorial3 extends Tutorial {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        rootView.getContext().unregisterReceiver(myReceiver);
+        rootView.getContext().unregisterReceiver(myReceiver);   //리시버 해제
     }
 
     /**
      * 튜토리얼 스윙에 대한 메시지 받는 브로드캐스트 리시버
-     * (리시버에서 받는 건 '스윙했다!' 임)
       */
     class MyReceiver extends BroadcastReceiver {
         @Override
@@ -110,6 +102,7 @@ public class Tutorial3 extends Tutorial {
                     tutorialGuideTextViews[count-1].setVisibility(View.GONE);
                     tutorialGuideTextViews[count].setVisibility(View.VISIBLE);
                 }
+                //마지막 페이지에서는 메인 페이지로 이동한다
                 if(count == 5){
                     Toast.makeText(getContext(), "칼리브레이션이 끝났습니다. 메인페이지로 이동하세요", Toast.LENGTH_SHORT).show();
                 }

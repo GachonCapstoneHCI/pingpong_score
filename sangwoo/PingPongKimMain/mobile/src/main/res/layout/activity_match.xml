@@ -32,42 +32,6 @@
         android:weightSum="5">
 
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="100dp"-->
-            <!--android:layout_weight="2"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:gravity="center"-->
-                <!--android:textSize="30sp"-->
-                <!--android:textStyle="bold"-->
-                <!--android:textColor="#000000"-->
-                <!--android:text="탁구왕 김탁구" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:gravity="center"-->
-                <!--android:textSize="30sp"-->
-                <!--android:textColor="#000000"-->
-                <!--android:text="vs" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:gravity="center"-->
-                <!--android:textSize="30sp"-->
-                <!--android:textStyle="bold"-->
-                <!--android:textColor="#0000F9"-->
-                <!--android:text="뚜벅이 노그네" />-->
-        <!--</LinearLayout>-->
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

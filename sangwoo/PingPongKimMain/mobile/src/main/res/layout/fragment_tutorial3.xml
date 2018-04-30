@@ -202,7 +202,5 @@
                 android:src="@drawable/swing_check_btn_none"
                 android:visibility="visible" />
         </TableRow>
-
     </TableLayout>
-
 </LinearLayout>

@@ -42,66 +42,53 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass
- * 스마트워치와 잘 연결돼어있는지 확인하는 페이지
+ * Tutorial2 : 스마트워치와 잘 연결되어있는지 확인하는 페이지
  */
 public class Tutorial2 extends Tutorial {
 
-    private RemoteSensorManager remoteSensorManager;
-    private List<Node> mNodes;
+    private RemoteSensorManager remoteSensorManager;    //스마트 워치 매니저
+    private List<Node> mNodes;  //스마트폰과 연결되어있는 스마트워치 노드 리스트
 
-    Tutorial.TutorialNextPage mListener;
+    private Tutorial.TutorialNextPage mListener;
 
     //뷰
-    ImageView buttonCheckWatchConnection;
-
+    private ImageView buttonCheckWatchConnection;
     private TextView txtProgress;
     private ProgressBar progressBar;
     private int pStatus = 0;
     private Handler handler = new Handler();
 
     //프로그레스바
-    RelativeLayout buttonLayout;
-    RelativeLayout progressBarLayout;
-    //TextView textView1, textView2, textView3;
-
-    ViewGroup rootView;
+    private RelativeLayout buttonLayout;
+    private RelativeLayout progressBarLayout;
+    private ViewGroup rootView;
 
 
     @Override
     public void onAttach(Activity activity) {
-        //액티비티가 인터페이스를 구현하지 않으면 에러를 발생시킨다
+        //다음 페이지로 이동하는 리스너가 구현되었는지 확인
         super.onAttach(activity);
         try{
             mListener = (Tutorial.TutorialNextPage)activity;
         }
         catch (ClassCastException e){
-            throw new ClassCastException(activity.toString() + " must implement TutorialNextPage");
+            throw new ClassCastException(activity.toString() + " TutorialNextPage를 구현해아 함");
         }
     }
 
+    public Tutorial2() {}
 
-    public Tutorial2() {
-        // Required empty public constructor
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_tutorial2, container, false);
         remoteSensorManager = RemoteSensorManager.getInstance(rootView.getContext());
-        //final List<Sensor> sensors = RemoteSensorManager.getInstance(rootView.getContext()).getSensors();
 
-        //뷰
+        //뷰 객체화
         buttonCheckWatchConnection = (ImageView)rootView.findViewById(R.id.buttonCheckWatchConnection);
         buttonLayout = rootView.findViewById(R.id.buttonLayout);
         progressBarLayout = rootView.findViewById(R.id.progressBarLayout);
 
-        //스마트 워치 연결 확인
-        //필요한가
-//        List<Sensor> sensors = RemoteSensorManager.getInstance(rootView.getContext()).getSensors();
-//        for(Sensor s : sensors){
-//            remoteSensorManager.filterBySensorId((int)s.getId());
-//        }
 
         //연결 확인을 하기 위해 버튼을 누른다
         buttonCheckWatchConnection.setOnClickListener(new View.OnClickListener() {
@@ -118,13 +105,10 @@ public class Tutorial2 extends Tutorial {
         });
         return rootView;
     }
-    @Subscribe
-    public void onNewSensorEvent(final NewSensorEvent event) {
-    }
 
+    //100%까지 채움
     private class ProgressBarTask extends AsyncTask<Void, Integer, String> {
         protected String doInBackground(Void... params) {
-
             while (pStatus <= 100) {
                 handler.post(new Runnable() {
                     @Override
@@ -140,7 +124,6 @@ public class Tutorial2 extends Tutorial {
                 }
                 pStatus++;
             }
-
             return null;
         }
 
@@ -148,7 +131,7 @@ public class Tutorial2 extends Tutorial {
         }
 
         protected void onPostExecute(String s){
-            //start measurement  를 해야지 센서들을 가져올 수 있다
+            //start measurement  를 해야지 센서들을 가져올 수 있음
             remoteSensorManager.startMeasurement();
             BusProvider.getInstance().register(rootView.getContext());
             remoteSensorManager.getNodes(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
@@ -156,9 +139,8 @@ public class Tutorial2 extends Tutorial {
                 public void onResult(final NodeApi.GetConnectedNodesResult pGetConnectedNodesResult) {
                     mNodes = pGetConnectedNodesResult.getNodes();
                     if(mNodes.size() > 0){
-                        //Log.e("nogary : ", n.getDisplayName());
-                        Toast.makeText(rootView.getContext(), "스마트 워치 "+ mNodes.get(0).getDisplayName() + " 와 연결되어있네용! 5초 후 다음 페이지로 이동합니다" , Toast.LENGTH_SHORT).show();
-                        //3초 후에 다음 페이지로 이동
+                        //연결되어있는 스마트 워치가 있으면 토스트 메시지를 띄우고 다음 페이지로 이동
+                        Toast.makeText(rootView.getContext(), "스마트 워치 "+ mNodes.get(0).getDisplayName() + " 와 연결되어있네요! 5초 후 다음 페이지로 이동합니다" , Toast.LENGTH_SHORT).show();
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -167,7 +149,7 @@ public class Tutorial2 extends Tutorial {
                                 BusProvider.getInstance().unregister(this);
                                 mListener.onMoveNextPage(2);
                             }
-                        }, 5000);
+                        }, 3000);
                     }
                     else{
                         Toast.makeText(rootView.getContext(), "스마트 워치와 연결되어있지 않습니다!" , Toast.LENGTH_SHORT).show();
@@ -176,8 +158,4 @@ public class Tutorial2 extends Tutorial {
             });
         }
     }
-
-
-
-
 }

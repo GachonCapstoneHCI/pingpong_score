@@ -2,6 +2,7 @@ package com.github.pocmo.pingpongkim;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -112,7 +113,7 @@ public class SensorReceiverService extends WearableListenerService {
 
         Log.e(GlobalClass.TAG, "isHorizontal : " + Boolean.toString(isHorizontalSwing) + " isBackSwing : " + Boolean.toString(isBackSwing));
 
-        //sensorType 1 은 가속도?
+        //sensorType 1 은 가속도
         if(sensorType == 1){
             //필요한 정보보고 싶을 때 주석해제하기
 //            String s = Integer.toString(accuracy) + " / " + Long.toString(timestamp) + " / " + '\n'
@@ -136,7 +137,7 @@ public class SensorReceiverService extends WearableListenerService {
                 //튜토리얼일 때는 broadcast 를 뿌려준다
                 if(isTutorial && (msg.equals("SWING") || msg.equals("BACK SWING"))){
                     tutorialCount++;
-                    Log.e("nogary","service : " + Integer.toString(tutorialCount) );
+                    Log.e(GlobalClass.TAG, Integer.toString(tutorialCount) );
                     if(tutorialCount <= 5){
                         Intent tutorial_intent = new Intent();
                         intent.setAction(ACTION_TUTORIAL_CALB);
@@ -148,24 +149,23 @@ public class SensorReceiverService extends WearableListenerService {
             else{
                 msg = "-";
             }
-            intent.putExtra("sensordata", result);
-            intent.putExtra("swingdetect", msg);
-            intent.putExtra("timestamp", timestamp);
-            sendBroadcast(intent);
-
+            if(!msg.equals("-")){
+                intent.putExtra("sensordata", result);
+                intent.putExtra("swingdetect", msg);
+                intent.putExtra("timestamp", timestamp);
+                sendBroadcast(intent);
+            }
             //swing 이 아니면 0 을 넣고 swing 이면 svm 값을 넣어서 그래프를 하나만 찍도록 한다
             if(msg.equals("-") || msg.equals("NONE"))
                 svm_values[0] = 0;
             else {
                 svm_values[0] = (float) (Math.pow(values[0], 2) + Math.pow(values[1], 2));
-                //가속도 값 values 를 svm 값 하나로 만들자
             }
-
             values = svm_values;
         }
         //gravity 센서
         else if(sensorType == 9){
-            //TODO : 일단 두 값의 평균을 구한다. 그리고 나중에는 일정 interval의 데이터를 구한다
+            //TODO : 일정 interval의 데이터를 구한다
             double gravity_z_mean = (prev_gravity_z + values[2])/2.0;
             prev_gravity_z = values[2];
             Log.e(GlobalClass.TAG, "Z_GRAVITY MEAN -> " + Double.toString(gravity_z_mean));
@@ -176,12 +176,12 @@ public class SensorReceiverService extends WearableListenerService {
                 isHorizontalSwing = true;
                 isBackSwing = false;
             }
-            //펜홀더의 경우 vertical 인 경우 대체로 -0 ~ -8 사이의 값이 나온다
+            //펜홀더의 경우 vertical 인 경우 대체로 -0 ~ -8 사이의 값이 나옴
             else if(gravity_z_mean >= -7 && gravity_z_mean <= 0){
                 isHorizontalSwing = false;
                 isBackSwing = false;
             }
-            //펜홀더의 경우 back swing 인 경우 대체로 -8 ~ -15 사이의 값이 나온다
+            //펜홀더의 경우 back swing 인 경우 대체로 -8 ~ -15 사이의 값이 나옴
             else if(gravity_z_mean <= -8){
                 isHorizontalSwing = false;
                 isBackSwing = true;
@@ -194,11 +194,8 @@ public class SensorReceiverService extends WearableListenerService {
     //swing detect alogrithm
     boolean isSkipping = false;
     int skipCount = 0;
-    //int swingCount = 0;
     final int baseThreshold = 200;
     final int skipInterval = 20;
-
-
     /**
      * 핵심 알고리즘
      * 입력 데이터에 signal vector magnitude를 저장해서 그 값을 반환해준다
@@ -216,7 +213,7 @@ public class SensorReceiverService extends WearableListenerService {
             double svmVal = Math.pow(values[0], 2) + Math.pow(values[1], 2) + Math.pow(values[2], 2);
             Log.e(GlobalClass.TAG, "SVM_VALUE -> " + Double.toString(svmVal));
 
-            //추가적인 N개의 데이터를 무시하는 구간에 있는지 확인한다
+            //추가적인 N개의 데이터를 무시하는 구간에 있는지 확인
             //무시하는 구간에 있으면
             if (isSkipping) {
                 skipCount++;
@@ -228,7 +225,7 @@ public class SensorReceiverService extends WearableListenerService {
             }
             //무시하는 구간에 있지 않는 경우
             else {
-                //일정 threshold를 넘으면 무시하는 구간으로 들어간다
+                //일정 threshold를 넘으면 무시하는 구간으로 들어감
                 //TODO : Adaptive Thresholding을 적용해야한다
                 if (svmVal > baseThreshold) {
                     isSkipping = true;

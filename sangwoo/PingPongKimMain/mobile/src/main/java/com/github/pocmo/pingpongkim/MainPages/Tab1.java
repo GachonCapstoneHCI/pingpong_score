@@ -17,32 +17,29 @@ import com.github.pocmo.pingpongkim.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Tab1.OnFragmentInteractionListener} interface
- * to handle interaction events.
+ * Tab1 : 메인 페이지
  */
 public class Tab1 extends Fragment {
 
     private Button buttonStartGame;
     private OnFragmentInteractionListener mListener;
 
-    public Tab1() {
-        // Required empty public constructor
-    }
+    public Tab1() {}
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         final ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_tab1, container, false);
+
+        //뷰 객체화
         buttonStartGame = (Button)rootView.findViewById(R.id.buttonStartGame);
 
+        //경기 상대를 찾기 위한  matchactivity 로 이동
         buttonStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(rootView.getContext(), "눌렀!", Toast.LENGTH_SHORT).show();
                 Intent matchStartIntent = new Intent(getActivity(), MatchActivity.class);
                 startActivity(matchStartIntent);
             }
@@ -51,11 +48,6 @@ public class Tab1 extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Activity context) {

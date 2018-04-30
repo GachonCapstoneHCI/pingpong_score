@@ -12,8 +12,7 @@ import com.github.pocmo.pingpongkim.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Tab2.OnFragmentInteractionListener2} interface
+ * Tab2 : 랭키 보여주는 페이지
  * to handle interaction events.
  */
 public class Tab2 extends Fragment {
@@ -28,16 +27,9 @@ public class Tab2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tab2, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Activity context) {
