@@ -26,10 +26,9 @@ public class SensorReceiverService extends WearableListenerService {
     public static final String ACTION_TUTORIAL_CALB = "sensorservice.tutorialcalb";
     public static final String ACTION_START_PLAY = "sensorservice.startplay";
 
-    //현재 경기 중인지 관리하는 변수
-    boolean isPlaying = false;
     //현재 튜토리얼 중인지 관리하는 변수
-    boolean isTutorial = true;
+    //TODO : true 로 바꿔야함
+    boolean isTutorial = false;
     private int tutorialCount = 0; //튜토리얼 스윙 횟수 (최대 5회)
 
     //이전 중력센서값과 현재 중력센서값의 평균
@@ -63,15 +62,24 @@ public class SensorReceiverService extends WearableListenerService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        isPlaying = false;
     }
 
+    //TODO : 임시용..
+    boolean isMyFirst = true;
     @Override
     public void onDataChanged(DataEventBuffer dataEvents) {
         Log.d(GlobalClass.TAG, "onDataChanged()");
         //튜토리얼도 아니고 경기중도 아닌데 데이터가 들어오기 시작하면 경기중으로 간주한다
-        if(!isTutorial && !isPlaying){
-            isPlaying = true;
+//        if(!isTutorial && !GlobalClass.isPlaying){
+//            GlobalClass.isPlaying = true;
+//            //메인액티비티2로 브로드캐스트를 날려서 PlayActivity를 실행하게 만든다
+//            Intent intent = new Intent();
+//            intent.setAction(ACTION_START_PLAY);
+//            sendBroadcast(intent);
+//        }
+        if(isMyFirst){
+            GlobalClass.isPlaying = true;
+            isMyFirst = false;
             //메인액티비티2로 브로드캐스트를 날려서 PlayActivity를 실행하게 만든다
             Intent intent = new Intent();
             intent.setAction(ACTION_START_PLAY);
@@ -111,7 +119,7 @@ public class SensorReceiverService extends WearableListenerService {
 
         //Log.d(GlobalClass.TAG, "Received sensor data " + sensorType + " = " + Arrays.toString(values));
 
-        Log.e(GlobalClass.TAG, "isHorizontal : " + Boolean.toString(isHorizontalSwing) + " isBackSwing : " + Boolean.toString(isBackSwing));
+        //Log.e(GlobalClass.TAG, "isHorizontal : " + Boolean.toString(isHorizontalSwing) + " isBackSwing : " + Boolean.toString(isBackSwing));
 
         //sensorType 1 은 가속도
         if(sensorType == 1){
@@ -132,12 +140,12 @@ public class SensorReceiverService extends WearableListenerService {
                 if(isHorizontalSwing)msg = "SWING";
                 else if(isBackSwing) msg = "BACK SWING";
                 else msg = "NONE";
-                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 
                 //튜토리얼일 때는 broadcast 를 뿌려준다
                 if(isTutorial && (msg.equals("SWING") || msg.equals("BACK SWING"))){
                     tutorialCount++;
-                    Log.e(GlobalClass.TAG, Integer.toString(tutorialCount) );
+                    //Log.e(GlobalClass.TAG, Integer.toString(tutorialCount) );
                     if(tutorialCount <= 5){
                         Intent tutorial_intent = new Intent();
                         intent.setAction(ACTION_TUTORIAL_CALB);
@@ -168,8 +176,8 @@ public class SensorReceiverService extends WearableListenerService {
             //TODO : 일정 interval의 데이터를 구한다
             double gravity_z_mean = (prev_gravity_z + values[2])/2.0;
             prev_gravity_z = values[2];
-            Log.e(GlobalClass.TAG, "Z_GRAVITY MEAN -> " + Double.toString(gravity_z_mean));
-            Log.e(GlobalClass.TAG, "Z_GRAVITY CURRENT -> " + Double.toString(values[2]));
+            //Log.e(GlobalClass.TAG, "Z_GRAVITY MEAN -> " + Double.toString(gravity_z_mean));
+            //Log.e(GlobalClass.TAG, "Z_GRAVITY CURRENT -> " + Double.toString(values[2]));
 
             //펜홀더의 경우 horizontal 인 경우 대체로 8 이상의 값은 나온다 평균을 냈을 때 8 이상이라고 하면
             if(gravity_z_mean >= 7){
@@ -203,7 +211,7 @@ public class SensorReceiverService extends WearableListenerService {
      * @return
      */
     double checkIsSwing(float[] values){
-        Log.e(GlobalClass.TAG, "skip count : " + Integer.toString(skipCount) + " isSkipping : " + Boolean.toString(isSkipping));
+        //Log.e(GlobalClass.TAG, "skip count : " + Integer.toString(skipCount) + " isSkipping : " + Boolean.toString(isSkipping));
 
         //x와 y에 대해서만 svm 을 적용한다
         //z를 넣지 않는 이유는 피크가 스윙과 무관하게 발생해서 무시하기 위함
@@ -211,7 +219,7 @@ public class SensorReceiverService extends WearableListenerService {
         if(values[0] < 15 && values[1] < 15) {
             //제곱
             double svmVal = Math.pow(values[0], 2) + Math.pow(values[1], 2) + Math.pow(values[2], 2);
-            Log.e(GlobalClass.TAG, "SVM_VALUE -> " + Double.toString(svmVal));
+            //Log.e(GlobalClass.TAG, "SVM_VALUE -> " + Double.toString(svmVal));
 
             //추가적인 N개의 데이터를 무시하는 구간에 있는지 확인
             //무시하는 구간에 있으면

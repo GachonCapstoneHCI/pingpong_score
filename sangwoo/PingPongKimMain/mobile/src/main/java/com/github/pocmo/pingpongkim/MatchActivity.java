@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pManager;
@@ -17,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.pocmo.pingpongkim.match.DeviceDetailFragment;
@@ -49,6 +51,11 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
     //브로드캐스트 리시버
     private BroadcastReceiver receiver = null;
     private final IntentFilter intentFilter = new IntentFilter();
+
+    private MyReceiver myReceiver;
+
+    //경기 전후
+    private TextView textStatus;
 
 
     @Override
@@ -110,6 +117,20 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
         //wifi direct 초기화
         manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         channel = manager.initialize(this, getMainLooper(), null);
+
+        //리시버 등록
+        myReceiver = new MyReceiver();
+        registerReceiver(myReceiver, makeIntentFilter());
+
+        //
+        textStatus = findViewById(R.id.gameStatus);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(myReceiver); //리시버 해제
     }
 
     @Override
@@ -118,6 +139,18 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
         //리시버 등록
         receiver = new WiFiDirectBroadcastReceiver(manager, channel, this);
         registerReceiver(receiver, intentFilter);
+
+        //승패 표시
+        if(GlobalClass.isGameOver){
+            if(GlobalClass.isServer) {
+                textStatus.setText("승리");
+                textStatus.setTextColor(Color.parseColor("#4472C4"));
+            }
+            else  {
+                textStatus.setText("패배");
+                textStatus.setTextColor(Color.parseColor("#FF0000"));
+            }
+        }
     }
 
     @Override
@@ -220,6 +253,16 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
 //                return super.onOptionsItemSelected(item);
 //        }
 //    }
+    /**
+     * SensorService에서 전송한다
+     * @return
+     */
+    private static IntentFilter makeIntentFilter() {
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(SensorReceiverService.ACTION_START_PLAY);
+        return intentFilter;
+    }
+
 
     /**
      * 서비스에서 device 정보를 받아오면 프래그먼트에 뿌려주는 역할을 함
@@ -329,4 +372,21 @@ public class MatchActivity extends AppCompatActivity implements WifiP2pManager.C
     public void setPartnerDeviceName(String deviceName){
         partnerDeviceName = deviceName;
     }
+
+    /*
+     PLAY 액션이 들어오면 PLAY ACTIVITY 를 띄움
+     TODO : PLAY 액션 : 경기 시작 버튼 누르면?
+     */
+    class MyReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(action != null && action.equals(SensorReceiverService.ACTION_START_PLAY)){
+                //경기중 액티비티를 띄운다
+                Intent playActivity = new Intent(MatchActivity.this, PlayActivity.class);
+                startActivity(playActivity);
+            }
+        }
+    }
+
 }

@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,201 +6,244 @@
     android:padding="10dp"
     android:orientation="vertical">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:text="      3단계 : 당신의 스윙을 보여주세요"/>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
-    <TextView
-        android:layout_width="364dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/three_step"
-        android:textColor="#000000"
-        android:textSize="15sp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
     <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:orientation="vertical"
-        android:background="#FEC141">
+        android:orientation="vertical">
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:text="      3단계 : 당신의 스윙을 보여주세요"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:id="@+id/swingImg"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/tutorial_swing1"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="개발 완료되면 IMG or GIF"/>
+            android:gravity="center"
+            android:text="@string/three_step"
+            android:textColor="#000000"
+            android:textSize="15sp" />
 
-        <!-- 이 레이아웃 수정해줘야 함 -->
-        <LinearLayout
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3"
-            >
-            <Button
-                android:id="@+id/buttonTemp"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="(개발용)그래프 띄우기"/>
+            android:layout_height="20dp" />
 
-            <Button
-                android:id="@+id/buttonTemp2"
-                android:layout_width="10dp"
-                android:layout_weight="1"
+        <!--<LinearLayout-->
+        <!--android:layout_width="250dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="#FEC141">-->
+
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="개발 완료되면 IMG or GIF"/>-->
+
+        <!--&lt;!&ndash; 이 레이아웃 수정해줘야 함 &ndash;&gt;-->
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_weight="3"-->
+        <!--&gt;-->
+        <!---->
+
+        <!---->
+        <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+        <!--<Button-->
+        <!--android:id="@+id/buttonTemp2"-->
+        <!--android:layout_width="10dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="(개발용)메인 페이지로 이동"/>-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_gravity="center">
+
+            <!-- action에 따라 각 row별 txt, img의 visibility 속성 값 조정하기 -->
+            <!-- First swing -->
+            <TableRow
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(개발용)메인 페이지로 이동"/>
-        </LinearLayout>
+                android:id="@+id/tableRow1"
+                android:visibility="invisible"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/swing1_txt"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:width="200dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="15dp"
+                    android:text="@string/three_step_first"
+                    android:textColor="#000000"
+                    />
+
+                <ImageView
+                    android:id="@+id/swing1_tmg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:width="35dp"
+                    android:height="35dp"
+                    android:src="@drawable/swing_check_btn"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    />
+            </TableRow>
+
+            <!--  Second swing -->
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:id="@+id/tableRow2"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/swing2_txt"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:width="200dp"
+                    android:paddingTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/three_step_second"
+                    android:textColor="#000000"
+                    />
+
+                <ImageView
+                    android:id="@+id/swing2_img"
+                    android:layout_height="match_parent"
+                    android:width="35dp"
+                    android:height="35dp"
+                    android:src="@drawable/swing_check_btn"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    />
+            </TableRow>
+
+            <!-- Third swing -->
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:id="@+id/tableRow3"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/swing3_txt"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:width="200dp"
+                    android:paddingTop="15dp"
+                    android:text="@string/three_step_third"
+                    android:textColor="#000000"
+                    />
+
+                <ImageView
+                    android:id="@+id/swing3_img"
+                    android:layout_height="match_parent"
+                    android:width="35dp"
+                    android:height="35dp"
+                    android:src="@drawable/swing_check_btn"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:visibility="visible" />
+            </TableRow>
+
+            <!-- Fourth swing -->
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:id="@+id/tableRow4"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/swing4_txt"
+                    android:layout_height="50dp"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="left"
+                    android:width="200dp"
+                    android:paddingTop="15dp"
+                    android:text="@string/three_step_fourth"
+                    android:textColor="#000000"
+                    />
+
+                <ImageView
+                    android:id="@+id/swing4_img"
+                    android:layout_height="match_parent"
+                    android:width="35dp"
+                    android:height="35dp"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:src="@drawable/swing_check_btn"
+                    android:visibility="visible" />
+            </TableRow>
+
+            <!-- Fifth swing -->
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:id="@+id/tableRow5"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/swing5_txt"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="15dp"
+                    android:text="@string/three_step_fifth"
+                    android:textColor="#000000"
+                    />
+
+                <ImageView
+                    android:id="@+id/swing5_img"
+                    android:layout_height="match_parent"
+                    android:width="35dp"
+                    android:height="35dp"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:src="@drawable/swing_check_btn"
+                    />
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
-    <Space
+
+
+    <Button
+        android:id="@+id/buttonTemp2"
         android:layout_width="match_parent"
-        android:layout_height="10dp" />
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_gravity="center">
-
-        <!-- action에 따라 각 row별 txt, img의 visibility 속성 값 조정하기 -->
-        <!-- First swing -->
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
-            <TextView
-                android:id="@+id/swing1_txt"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:width="200dp"
-                android:paddingTop="15dp"
-                android:text="@string/three_step_first"
-                android:textColor="#000000"
-                android:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/swing1_tmg"
-                android:layout_height="match_parent"
-                android:width="35dp"
-                android:height="35dp"
-                android:src="@drawable/swing_check_btn"
-                android:visibility="visible" />
-        </TableRow>
-
-        <!--  Second swing -->
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
-            <TextView
-                android:id="@+id/swing2_txt"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:width="200dp"
-                android:paddingTop="15dp"
-                android:text="@string/three_step_second"
-                android:textColor="#000000"
-                android:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/swing2_img"
-                android:layout_height="match_parent"
-                android:width="35dp"
-                android:height="35dp"
-                android:src="@drawable/swing_check_btn_none"
-                android:visibility="invisible" />
-        </TableRow>
-
-        <!-- Third swing -->
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
-            <TextView
-                android:id="@+id/swing3_txt"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:width="200dp"
-                android:paddingTop="15dp"
-                android:text="@string/three_step_third"
-                android:textColor="#000000"
-                android:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/swing3_img"
-                android:layout_height="match_parent"
-                android:width="35dp"
-                android:height="35dp"
-                android:src="@drawable/swing_check_btn_none"
-                android:visibility="visible" />
-        </TableRow>
-
-        <!-- Fourth swing -->
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
-            <TextView
-                android:id="@+id/swing4_txt"
-                android:layout_height="50dp"
-                android:layout_gravity="left"
-                android:width="200dp"
-                android:paddingTop="15dp"
-                android:text="@string/three_step_fourth"
-                android:textColor="#000000"
-                android:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/swing4_img"
-                android:layout_height="match_parent"
-                android:width="35dp"
-                android:height="35dp"
-                android:src="@drawable/swing_check_btn_none"
-                android:visibility="visible" />
-        </TableRow>
-
-        <!-- Fifth swing -->
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
-            <TextView
-                android:id="@+id/swing5_txt"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_gravity="left"
-                android:paddingTop="15dp"
-                android:text="@string/three_step_fifth"
-                android:textColor="#000000"
-                android:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/swing5_img"
-                android:layout_height="match_parent"
-                android:width="35dp"
-                android:height="35dp"
-                android:src="@drawable/swing_check_btn_none"
-                android:visibility="visible" />
-        </TableRow>
-    </TableLayout>
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:background="#FEC141"
+        android:layout_alignParentBottom="true"
+        android:text="내 스윙 학습시키기" />
+</RelativeLayout>

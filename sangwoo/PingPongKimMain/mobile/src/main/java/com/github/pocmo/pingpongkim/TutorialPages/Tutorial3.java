@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,11 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.pocmo.pingpongkim.R;
 import com.github.pocmo.pingpongkim.SensorReceiverService;
+import com.github.pocmo.pingpongkim.TutorialActivity;
+import com.google.android.gms.wearable.MessageApi;
+import com.google.android.gms.wearable.Wearable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,12 +35,15 @@ public class Tutorial3 extends Tutorial {
     private Tutorial.TutorialNextPage mListener;    //다음 페이지 이동 리스너
     private MyReceiver myReceiver;  //튜토리얼 스윙에 대한 브로드캐스트 리시버
     private ViewGroup rootView;
-    private TextView[] tutorialGuideTextViews;  //5가지의 텍스트
+    private TableRow[] tutorialGuides;  //5가지의 텍스트
     private int count = 0;  //스윙 횟수
+
+    Handler mHandler;
 
     //뷰
     private Button buttonTemp;
     private Button buttonTemp2;
+    private ImageView swingImg;
 
     @Override
     public void onAttach(Activity activity) {
@@ -56,32 +66,101 @@ public class Tutorial3 extends Tutorial {
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_tutorial3, container, false);
 
         //뷰 객체화
-        buttonTemp = (Button)rootView.findViewById(R.id.buttonTemp);
+
         //id 가 3이면 메인 액티비티(개발용 그래프)를 보여줌
-        buttonTemp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onMoveNextPage(3);
-            }
-        });
+
         //id 가 4면 메인 액티비티2(메인 페이지)를 보여줌
         buttonTemp2 = (Button)rootView.findViewById(R.id.buttonTemp2);
+        swingImg = (ImageView)rootView.findViewById(R.id.swingImg);
         buttonTemp2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onMoveNextPage(4);
+                //mListener.onMoveNextPage(4);
+                //실행
+                mHandler = new Handler();
+                playTutorialCounter();
             }
         });
 
         //튜토리얼 가이드 텍스트 (1~5단계)
-        tutorialGuideTextViews = new TextView[5];
+        tutorialGuides = new TableRow[5];
+        tutorialGuides[0] = rootView.findViewById(R.id.tableRow1);
+        tutorialGuides[1] = rootView.findViewById(R.id.tableRow2);
+        tutorialGuides[2] = rootView.findViewById(R.id.tableRow3);
+        tutorialGuides[3] = rootView.findViewById(R.id.tableRow4);
+        tutorialGuides[4] = rootView.findViewById(R.id.tableRow5);
 
         //리시버 등록 : 센서 읽는 서비스에서 튜토리얼 스윙했다는 메시지를 보내면 받음
         myReceiver = new MyReceiver();
         rootView.getContext().registerReceiver(myReceiver, makeIntentFilter());
+
+
+
+
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    void playTutorialCounter(){
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                tutorialGuides[0].setVisibility(View.VISIBLE);
+                swingImg.setBackground(getResources().getDrawable(R.drawable.tutorial_swing1));
+
+            }
+        }, 3000);
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                tutorialGuides[1].setVisibility(View.VISIBLE);
+                swingImg.setBackground(getResources().getDrawable(R.drawable.tutorial_swing2));
+            }
+        }, 5000);
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                tutorialGuides[2].setVisibility(View.VISIBLE);
+                swingImg.setBackground(getResources().getDrawable(R.drawable.tutorial_swing3));
+            }
+        }, 7500);
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                tutorialGuides[3].setVisibility(View.VISIBLE);
+                swingImg.setBackground(getResources().getDrawable(R.drawable.tutorial_swing4));
+            }
+        }, 10000);
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                swingImg.setImageResource(0);
+                tutorialGuides[4].setVisibility(View.VISIBLE);
+                swingImg.setBackground(getResources().getDrawable(R.drawable.tutorial_swing5));
+                Toast.makeText(rootView.getContext(), "학습이 종료되었습니다. 메인 페이지로 이동합니다", Toast.LENGTH_SHORT).show();
+            }
+        }, 12000);
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mListener.onMoveNextPage(4);
+            }
+        }, 15000);
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -99,8 +178,8 @@ public class Tutorial3 extends Tutorial {
                 if(count <= 5){
                     count++;
                     //텍스트를 하나씩 보여준다
-                    tutorialGuideTextViews[count-1].setVisibility(View.GONE);
-                    tutorialGuideTextViews[count].setVisibility(View.VISIBLE);
+                    tutorialGuides[count-1].setVisibility(View.GONE);
+                    tutorialGuides[count].setVisibility(View.VISIBLE);
                 }
                 //마지막 페이지에서는 메인 페이지로 이동한다
                 if(count == 5){

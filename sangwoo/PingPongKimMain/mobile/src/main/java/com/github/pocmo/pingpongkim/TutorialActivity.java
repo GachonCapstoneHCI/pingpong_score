@@ -49,7 +49,7 @@ public class TutorialActivity extends FragmentActivity implements Tutorial.Tutor
         }
         //마지막 페이지라면 메인액티비티2로 이동
         else {
-            Toast.makeText(TutorialActivity.this, "메인 페이지로 이동", Toast.LENGTH_SHORT).show();
+
             //id 가 3이면 개발용 그래프 페이지를 띄워줌
             if(id == 3){startActivity(new Intent(this, MainActivity.class));}
             //id가 3이 아니면 메인페이지를 띄워줌

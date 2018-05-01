@@ -1,6 +1,7 @@
 package com.github.pocmo.pingpongkim.SoundAnalyzer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
@@ -17,6 +18,7 @@ import com.github.pocmo.pingpongkim.GlobalClass;
  */
 
 public class RecordAudio extends AsyncTask<Void, double[], Void> {
+    public static final String ACTION_BALL_DETECTION = "radioaudio.ball";
 
     public RecordAudio(Context context){
         this.context = context;
@@ -45,7 +47,7 @@ public class RecordAudio extends AsyncTask<Void, double[], Void> {
         handler=  new Handler(context.getMainLooper());
         handler.post( new Runnable(){
             public void run(){
-                Toast.makeText(context, "음성 시작", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "음성 시작", Toast.LENGTH_SHORT).show();
             }
         });
         try{
@@ -101,34 +103,35 @@ public class RecordAudio extends AsyncTask<Void, double[], Void> {
         int count = 0;
         int outcount = 0;
 
-        Log.e(GlobalClass.TAG, "unit-----------------------------------");
+        //Log.e(GlobalClass.TAG, "unit-----------------------------------");
         for(int i = 0; i < toTransform[0].length; i++){
-            Log.e(GlobalClass.TAG, Double.toString(toTransform[0][i]));
 //            int x = i;
 //            int downy = (int) (100 - (toTransform[0][i] * 10));
 //            int upy = 100;
 
             if(i > 80 && i < 180){
-                if(toTransform[0][i] > 10 || toTransform[0][i] < -15){
+                if(toTransform[0][i] > 3 || toTransform[0][i] < -3){
                     outcount++;
                 }
             }
 
             if(i > 180 && i < 270) {
-                toTransform[0][i] = toTransform[0][i] * 4;
-                if(toTransform[0][i] > 60 || toTransform[0][i] < -60) {
-                    Log.e(GlobalClass.TAG, Integer.toString(count));
+                if(toTransform[0][i] > 13 || toTransform[0][i] < -13){
                     count++;
                 }
             }
         }
 
-        if(count > 20 && outcount < 20) {
+        if(count > 20 && outcount < 40) {
             //
+            Intent intent = new Intent();
+            intent.setAction(ACTION_BALL_DETECTION);
+            context.sendBroadcast(intent);
             Handler handler;
             handler=  new Handler(context.getMainLooper());
             handler.post( new Runnable(){
                 public void run(){
+
                     Toast.makeText(context, "탁구공이 튀겼습니다!", Toast.LENGTH_SHORT).show();
                 }
             });

@@ -1,53 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="gone"
-    android:orientation="horizontal">
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/myname"
+        android:gravity="center_vertical"
+        android:textSize="50sp"
+        android:text="나" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:layout_height="10dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textSize="30sp"
+        android:text="vs" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/myname"
-            android:textSize="20sp"
-            android:text="ME" />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="vs" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:gravity="center_vertical"
+        android:id="@+id/yourname"
+        android:text="김탁구" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:id="@+id/yourname"
-            android:text="YOU" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:gravity="center_vertical"
+        android:id="@+id/gameStatus"
+        android:textColor="@android:color/holo_green_dark"
+        android:textStyle="bold"
+        android:text="대기중" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-        <Button
-            android:id="@+id/buttonPlay"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:text="뜨자"/>
+    <!--<Button-->
+        <!--android:id="@+id/buttonPlay"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:text="뜨자"/>-->
 
-    </LinearLayout>
-
-
-</FrameLayout>
+</LinearLayout>

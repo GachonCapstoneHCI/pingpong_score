@@ -3,264 +3,264 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="10dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="60sp"
-        android:gravity="center_horizontal"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:text="승률 : 66.6 %"/>
-
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
+            android:gravity="center_horizontal"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="승률 : 66.6 %"/>
 
         <android.support.v4.widget.Space
-            android:layout_width="60dp"
-            android:layout_height="match_parent"/>
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
 
-        <!--몇 전 몇 승 몇 패 기록-->
-        <TextView
-            android:id="@+id/record_total"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:textColor="#00B050"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:text="12"/>
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:textSize="30sp"
-            android:text="전"/>
-        <TextView
-            android:id="@+id/record_win"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:textColor="#4472C4"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:text="  8"/>
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:textSize="30sp"
-            android:text="승"/>
-        <TextView
-            android:id="@+id/record_lose"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:textColor="#FF0000"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:text="  4"/>
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:textSize="30sp"
-            android:text="패"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <android.support.v4.widget.Space
+                android:layout_width="60dp"
+                android:layout_height="match_parent"/>
+
+            <!--몇 전 몇 승 몇 패 기록-->
+            <TextView
+                android:id="@+id/record_total"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:textColor="#00B050"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:text="12"/>
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:textSize="30sp"
+                android:text="전"/>
+            <TextView
+                android:id="@+id/record_win"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:textColor="#4472C4"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:text="  8"/>
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:textSize="30sp"
+                android:text="승"/>
+            <TextView
+                android:id="@+id/record_lose"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:textColor="#FF0000"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:text="  4"/>
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:textSize="30sp"
+                android:text="패"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="60dp"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
 
         <android.support.v4.widget.Space
-            android:layout_width="60dp"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="      최근 5경기 기록"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:text="      최근 5경기 기록"/>
-
-    <!--각 줄은 data1, rival1, result1, score1으로 이루어져 있으며 5줄까지 있음-->
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal">
-
-        <TableRow
+        <!--각 줄은 data1, rival1, result1, score1으로 이루어져 있으며 5줄까지 있음-->
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal">
-            <TextView
-                android:id="@+id/date1"
-                android:textColor="#000000"
-                android:textSize="25sp"
-                android:text="4/02" />
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
 
-            <TextView
-                android:id="@+id/rival1"
-                android:text="노상우"
-                android:textColor="#000000"
-                android:textSize="25sp" />
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
-            <TextView
-                android:id="@+id/result1"
-                android:textColor="#4472C4"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:text="승"/>
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
-            <TextView
-                android:id="@+id/score1"
-                android:textColor="#000000"
-                android:textSize="25sp"
-                android:text="2:1"/>
-        </TableRow>
-        <TableRow
-            android:gravity="center_horizontal">
-            <TextView
-                android:id="@+id/date2"
-                android:textColor="#000000"
-                android:textSize="25sp"
-                android:text="3/28" />
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
+            <TableRow
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/date1"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:text="4/02" />
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
 
-            <TextView
-                android:id="@+id/rival2"
-                android:text="김유민"
-                android:textColor="#000000"
-                android:textSize="25sp" />
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
-            <TextView
-                android:id="@+id/result2"
-                android:textColor="#4472C4"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:text="승"/>
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
-            <TextView
-                android:id="@+id/score2"
-                android:textColor="#000000"
-                android:textSize="25sp"
-                android:text="2:0"/>
-        </TableRow>
-        <TableRow
-            android:gravity="center_horizontal">
-            <TextView
-                android:id="@+id/date3"
-                android:textColor="#000000"
-                android:textSize="25sp"
-                android:text="3/27" />
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/rival1"
+                    android:text="노상우"
+                    android:textColor="#000000"
+                    android:textSize="25sp" />
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/result1"
+                    android:textColor="#4472C4"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:text="승"/>
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/score1"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:text="3:1"/>
+            </TableRow>
+            <TableRow
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/date2"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:text="3/28" />
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
 
-            <TextView
-                android:id="@+id/rival3"
-                android:text="이예준"
-                android:textColor="#000000"
-                android:textSize="25sp" />
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
-            <TextView
-                android:id="@+id/result3"
-                android:textColor="#C00000"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:text="패"/>
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
-            <TextView
-                android:id="@+id/score3"
-                android:textColor="#000000"
-                android:textSize="25sp"
-                android:text="2:1"/>
-        </TableRow>
-        <TableRow
-            android:gravity="center_horizontal">
-            <TextView
-                android:id="@+id/date4"
-                android:textColor="#000000"
-                android:textSize="25sp"
-                android:text="3/10" />
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/rival2"
+                    android:text="김유민"
+                    android:textColor="#000000"
+                    android:textSize="25sp" />
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/result2"
+                    android:textColor="#4472C4"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:text="승"/>
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/score2"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:text="3:0"/>
+            </TableRow>
+            <TableRow
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/date3"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:text="3/27" />
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
 
-            <TextView
-                android:id="@+id/rival4"
-                android:text="조진우"
-                android:textColor="#000000"
-                android:textSize="25sp" />
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
-            <TextView
-                android:id="@+id/result4"
-                android:textColor="#4472C4"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:text="승"/>
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
-            <TextView
-                android:id="@+id/score4"
-                android:textColor="#000000"
-                android:textSize="25sp"
-                android:text="2:1"/>
-        </TableRow>
-        <TableRow
-            android:gravity="center_horizontal">
-            <TextView
-                android:id="@+id/date5"
-                android:textColor="#000000"
-                android:textSize="25sp"
-                android:text="3/08" />
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/rival3"
+                    android:text="이예준"
+                    android:textColor="#000000"
+                    android:textSize="25sp" />
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/result3"
+                    android:textColor="#C00000"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:text="패"/>
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/score3"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:text="1:3"/>
+            </TableRow>
+            <TableRow
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/date4"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:text="3/10" />
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
 
-            <TextView
-                android:id="@+id/rival5"
-                android:text="유승민"
-                android:textColor="#000000"
-                android:textSize="25sp" />
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
-            <TextView
-                android:id="@+id/result5"
-                android:textColor="#C00000"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:text="패"/>
-            <android.support.v4.widget.Space
-                android:layout_width="40dp" />
-            <TextView
-                android:id="@+id/score5"
-                android:textColor="#000000"
-                android:textSize="25sp"
-                android:text="1:2"/>
-        </TableRow>
-    </TableLayout>
+                <TextView
+                    android:id="@+id/rival4"
+                    android:text="조진우"
+                    android:textColor="#000000"
+                    android:textSize="25sp" />
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/result4"
+                    android:textColor="#4472C4"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:text="승"/>
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/score4"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:text="3:1"/>
+            </TableRow>
+            <TableRow
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/date5"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:text="3/08" />
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
 
-    <android.support.v4.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
+                <TextView
+                    android:id="@+id/rival5"
+                    android:text="유승민"
+                    android:textColor="#000000"
+                    android:textSize="25sp" />
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/result5"
+                    android:textColor="#C00000"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:text="패"/>
+                <android.support.v4.widget.Space
+                    android:layout_width="40dp" />
+                <TextView
+                    android:id="@+id/score5"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:text="1:3"/>
+            </TableRow>
+        </TableLayout>
 
-    <Button
-        android:id="@+id/buttonStartGame"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="#FEC141"
-        android:text="경기 시작"
-        android:textSize="15sp"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+        <Button
+            android:id="@+id/buttonStartGame"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FEC141"
+            android:text="경기 시작"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
 
-
+    
 </LinearLayout>

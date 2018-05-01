@@ -26,7 +26,7 @@
 ]]></string>
 
     <string name="one_step">1단계 : 김탁구를 넘보는 당신!\n누군지 궁금합니다</string>
-    <string name="three_step">스마트 워치에서 '시작'을 누르고\n스윙해주세요!</string>
+    <string name="three_step">스마트 워치에서 \'시작\'을 누르고\n스윙해주세요!</string>
     <string name="three_step_first">첫 번째 스윙 슈욱~</string>
     <string name="three_step_second">두 번째 스윙 휘웅~</string>
     <string name="three_step_third">세 번째 스윙 호잇~</string>
@@ -57,8 +57,8 @@
     <string name="empty_message">No devices found. Turn on P2P and perform discovery from the Action Bar</string>
     <string name="p2p_off_warning">Enable P2P from action bar button above or system settings</string>
     <string name="group_owner_text">"Am I the Group Owner? "</string>
-    <string name="label_me">ME</string>
-    <string name="label_peers">PEERS</string>
+    <string name="label_me">나</string>
+    <string name="label_peers">다른 플레이어</string>
 
 
 </resources>

@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.github.pocmo.pingpongkim.GlobalClass;
 import com.github.pocmo.pingpongkim.MainActivity2;
 import com.github.pocmo.pingpongkim.PlayActivity;
 import com.github.pocmo.pingpongkim.R;
@@ -138,9 +139,10 @@ public class Tutorial2 extends Tutorial {
                 @Override
                 public void onResult(final NodeApi.GetConnectedNodesResult pGetConnectedNodesResult) {
                     mNodes = pGetConnectedNodesResult.getNodes();
+                    GlobalClass.mywatchId = mNodes.get(0).getId();
                     if(mNodes.size() > 0){
                         //연결되어있는 스마트 워치가 있으면 토스트 메시지를 띄우고 다음 페이지로 이동
-                        Toast.makeText(rootView.getContext(), "스마트 워치 "+ mNodes.get(0).getDisplayName() + " 와 연결되어있네요! 5초 후 다음 페이지로 이동합니다" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(rootView.getContext(), "스마트 워치 "+ mNodes.get(0).getDisplayName() + " 와 연결되어있네요! 3초 후 다음 페이지로 이동합니다" , Toast.LENGTH_SHORT).show();
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {

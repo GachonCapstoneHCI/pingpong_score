@@ -39,6 +39,7 @@
                 android:backgroundTint="#FEC141"
                 android:padding="5dp"
                 android:hint="닉네임"
+                android:textColor="#000000"
                 android:textColorHint="#BFBFBF"/>
 
             <Space
@@ -50,8 +51,10 @@
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:backgroundTint="#FEC141"
+                android:inputType="numberPassword"
                 android:padding="5dp"
                 android:hint="비밀번호"
+                android:textColor="#000000"
                 android:textColorHint="#BFBFBF"/>
             <Space
                 android:layout_width="match_parent"
@@ -64,6 +67,8 @@
                 android:backgroundTint="#FEC141"
                 android:padding="5dp"
                 android:hint="키"
+                android:inputType="number"
+                android:textColor="#000000"
                 android:textColorHint="#BFBFBF"/>
 
             <Space
@@ -77,6 +82,8 @@
                 android:backgroundTint="#FEC141"
                 android:padding="5dp"
                 android:hint="몸무게"
+                android:inputType="number"
+                android:textColor="#000000"
                 android:textColorHint="#BFBFBF"/>
 
             <Space
@@ -88,40 +95,76 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="#BFBFBF"
+                android:inputType="number"
                 android:text="  당신의 탁구 실력은?"/>
-
-            <RadioGroup
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/userSkill"
-                android:gravity="center">
+                android:layout_height="20dp" />
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/skill_sang"
-                    android:scaleX="0.65"
-                    android:scaleY="0.65"
-                    android:gravity="center" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/skill_sang"
+                    android:id="@+id/button_sang"/>
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/skill_joong"
+                    android:id="@+id/button_joong"/>
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/skill_ha"
+                    android:id="@+id/button_ha"/>
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/skill_joong"
-                    android:scaleX="0.65"
-                    android:scaleY="0.65"
-                    android:gravity="center"/>
+            </LinearLayout>
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/skill_ha"
-                    android:scaleX="0.65"
-                    android:scaleY="0.65"
-                    android:gravity="center" />
 
-            </RadioGroup>
+            <!--<RadioGroup-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:id="@+id/userSkill"-->
+                <!--android:gravity="center">-->
+
+                <!--<RadioButton-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:button="@drawable/skill_sang"-->
+                    <!--android:id="@+id/skill_1"-->
+                    <!--android:scaleX="0.65"-->
+                    <!--android:scaleY="0.65"-->
+                    <!--android:gravity="center" />-->
+
+                <!--<RadioButton-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:button="@drawable/skill_joong"-->
+                    <!--android:id="@+id/skill_2"-->
+                    <!--android:scaleX="0.65"-->
+                    <!--android:scaleY="0.65"-->
+                    <!--android:gravity="center"/>-->
+
+                <!--<RadioButton-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:button="@drawable/skill_ha"-->
+                    <!--android:id="@+id/skill_3"-->
+                    <!--android:scaleX="0.65"-->
+                    <!--android:scaleY="0.65"-->
+                    <!--android:gravity="center" />-->
+
+            <!--</RadioGroup>-->
 
             <!--<Spinner-->
                 <!--android:id="@+id/userAbilityLevel"-->

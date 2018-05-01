@@ -26,7 +26,6 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
         Tab2.OnFragmentInteractionListener2{
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private MyReceiver myReceiver;
     private ViewPager mViewPager;
     private final int numOfPage = 2;    //탭 개수
 
@@ -49,9 +48,7 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        //리시버 등록
-        myReceiver = new MyReceiver();
-        registerReceiver(myReceiver, makeIntentFilter());
+
     }
 
     @Override
@@ -93,32 +90,24 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(myReceiver); //리시버 해제
+
     }
 
-    /*
-     PLAY 액션이 들어오면 PLAY ACTIVITY 를 띄움
-     TODO : PLAY 액션 : 경기 시작 버튼 누르면?
-     */
-    class MyReceiver extends BroadcastReceiver{
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if(action != null && action.equals(SensorReceiverService.ACTION_START_PLAY)){
-                //경기중 액티비티를 띄운다
-                Intent playActivity = new Intent(MainActivity2.this, PlayActivity.class);
-                startActivity(playActivity);
-            }
-        }
-    }
+//    /*
+//     PLAY 액션이 들어오면 PLAY ACTIVITY 를 띄움
+//     TODO : PLAY 액션 : 경기 시작 버튼 누르면?
+//     */
+//    class MyReceiver extends BroadcastReceiver{
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            String action = intent.getAction();
+//            if(action != null && action.equals(SensorReceiverService.ACTION_START_PLAY)){
+//                //경기중 액티비티를 띄운다
+//                Intent playActivity = new Intent(MainActivity2.this, PlayActivity.class);
+//                startActivity(playActivity);
+//            }
+//        }
+//    }
 
-    /**
-     * SensorService에서 전송한다
-     * @return
-     */
-    private static IntentFilter makeIntentFilter() {
-        final IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(SensorReceiverService.ACTION_START_PLAY);
-        return intentFilter;
-    }
+
 }

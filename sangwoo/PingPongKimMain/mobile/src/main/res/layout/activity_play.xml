@@ -1,38 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:background="#FFFFFF"
-    android:orientation="vertical"
-    tools:context="com.github.pocmo.pingpongkim.PlayActivity">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center"
+android:background="#FFFFFF"
+android:orientation="vertical"
+tools:context="com.github.pocmo.pingpongkim.PlayActivity"
+android:padding="20dp">
 
 
-    <!-- 없어져야 함-->
-    <Button
-        android:background="@android:color/holo_blue_light"
-        android:textColor="@android:color/black"
-        android:id="@+id/buttonStartGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="경기 시작하기"
-        />
+<!--&lt;!&ndash; 없어져야 함&ndash;&gt;-->
+<!--<Button-->
+    <!--android:background="@android:color/holo_blue_light"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:id="@+id/buttonStartGame"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="경기 시작하기"-->
+    <!--/>-->
 
-    <!-- 없어져야 함-->
-    <Button
-        android:background="@android:color/holo_red_light"
-        android:textColor="@android:color/black"
-        android:id="@+id/buttonEndGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="경기 끝내기"
-        />
+<!-- 없어져야 함-->
 
-    <TextView
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="45dp" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textLog"
-        />
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ME"
+            android:textSize="20sp"
+            android:textColor="#000000" />
+        <TextView
+            android:id="@+id/score_p1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="100sp"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-     -     -     -     -"
+            android:textColor="#000000"
+            android:textSize="50sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="YOU"
+            android:textSize="20sp"
+            android:textColor="#000000" />
+        <TextView
+            android:id="@+id/score_p2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="100sp"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+    </LinearLayout>
 </LinearLayout>
+

@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#FEC141"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textStyle="bold"
             android:text="상대 찾기" />
 

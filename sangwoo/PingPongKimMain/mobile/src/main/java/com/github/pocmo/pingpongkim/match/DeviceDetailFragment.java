@@ -148,16 +148,16 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         textMyname = mContentView.findViewById(R.id.myname);
         textYourName = mContentView.findViewById(R.id.yourname);
 
-        buttonPlay = mContentView.findViewById(R.id.buttonPlay);
+//        buttonPlay = mContentView.findViewById(R.id.buttonPlay);
 //        buttonCounter = mContentView.findViewById(R.id.buttonCounter);
 //        buttonEnd = mContentView.findViewById(R.id.buttonEnd);
 //        msgBuffer = new LinkedList<>();
 
-        buttonPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContentView.getContext(), PlayActivity.class);
-                startActivity(intent);
+//        buttonPlay.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(mContentView.getContext(), PlayActivity.class);
+//                        startActivity(intent);
                 //서버 모드 실행
 //                if(isServer){
 //                    //API 18 이상 부터는 싱글 쓰레드로 작동하지 않게 만들기 위해서 아래와같은 코드를 넣어줘야한다
@@ -168,9 +168,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 //                    new ClientAsyncTask(mContentView.getContext()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 //                    new ServerAsyncTask(mContentView.getContext()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 //                }
-
-            }
-        });
+//            }
+//        });
 //        buttonCounter.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -413,7 +412,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 //                ServerSocket serverSocket = new ServerSocket(myPort);
 //                if(!isServer) myIP = serverSocket.getInetAddress().toString().substring(1);
 //                Log.e(GlobalClass.TAG, "Server: Socket opened - " + myIP + "/" + myPort);
-//                //Toast.makeText(context, "Server: Socket opened", Toast.LENGTH_SHORT).show();
+//                //Toast.makeText(context, "Server: Sockt opened", Toast.LENGTH_SHORT).show();
 //
 //                while(isPlaying){
 //                    //연결 요청을 기다린다

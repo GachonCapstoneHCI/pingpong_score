@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 
 public class GlobalClass {
-    public static String TAG = "PINGPONGKIM"; //로그 태그
+    public static String TAG = "NOHGARY"; //로그 태그
     public static int counter = 0;  //@TEST wifi direct 테스트용 counter
     public static boolean isPlaying = true; //현재 경기 중인지 여부
     public static boolean isServer; //wifi direct 에서 client 인지 server 인지 여부
@@ -16,9 +16,12 @@ public class GlobalClass {
     public static String serverIP, myIP;    //메시지를 전송할 서버 IP 번호와 메시지를 받을 나의 IP 번호
     public static boolean isServe = false;  //서브 차례 여부
     public static boolean isFirst = true;
+    public static boolean isFirstNoti = true;
     public static String playerType = "";
     public static ArrayList<String> expectedList;
     public static boolean isServing = true;
     public static String nowExpecting = "";
     public static int expectingIndex = 0;
+    public static String mywatchId;
+    public static boolean isGameOver = false;
 }
