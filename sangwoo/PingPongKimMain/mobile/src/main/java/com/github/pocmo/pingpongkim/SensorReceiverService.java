@@ -77,6 +77,8 @@ public class SensorReceiverService extends WearableListenerService {
 //            intent.setAction(ACTION_START_PLAY);
 //            sendBroadcast(intent);
 //        }
+
+        //TODO : 임시로 설정
         if(isMyFirst){
             GlobalClass.isPlaying = true;
             isMyFirst = false;
@@ -143,6 +145,7 @@ public class SensorReceiverService extends WearableListenerService {
                 //Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 
                 //튜토리얼일 때는 broadcast 를 뿌려준다
+                //TODO : Tutorial mode 있을 경우
                 if(isTutorial && (msg.equals("SWING") || msg.equals("BACK SWING"))){
                     tutorialCount++;
                     //Log.e(GlobalClass.TAG, Integer.toString(tutorialCount) );
@@ -161,6 +164,7 @@ public class SensorReceiverService extends WearableListenerService {
                 intent.putExtra("sensordata", result);
                 intent.putExtra("swingdetect", msg);
                 intent.putExtra("timestamp", timestamp);
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
                 sendBroadcast(intent);
             }
             //swing 이 아니면 0 을 넣고 swing 이면 svm 값을 넣어서 그래프를 하나만 찍도록 한다

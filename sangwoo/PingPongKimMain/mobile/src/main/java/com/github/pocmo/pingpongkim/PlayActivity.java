@@ -307,6 +307,7 @@ public class PlayActivity extends AppCompatActivity {
 
     final int[] times = {23100, 33200, 43000, 54100, 65300, 71000};
     final String [][] scores = {{"1", "0"}, {"2", "0"}, {"2", "1"}, {"2","2"}, {"3","2"}};
+
     public void testStart(){
 //        second = new TimerTask() {
 //            @Override
@@ -322,37 +323,37 @@ public class PlayActivity extends AppCompatActivity {
         mRunnable[0] = new Runnable() {
             @Override
             public void run() {
-                score1.setText(scores[0][0]);
-                score2.setText(scores[0][1]);
+                score2.setText(scores[0][0]);
+                score1.setText(scores[0][1]);
             }
         };
         mRunnable[1] = new Runnable() {
             @Override
             public void run() {
-                score1.setText(scores[1][0]);
-                score2.setText(scores[1][1]);
+                score2.setText(scores[1][0]);
+                score1.setText(scores[1][1]);
             }
         };
         mRunnable[2] = new Runnable() {
             @Override
             public void run() {
-                score1.setText(scores[2][0]);
-                score2.setText(scores[2][1]);
+                score2.setText(scores[2][0]);
+                score1.setText(scores[2][1]);
             }
         };
         mRunnable[3] = new Runnable() {
             @Override
             public void run() {
-                score1.setText(scores[3][0]);
-                score2.setText(scores[3][1]);
+                score2.setText(scores[3][0]);
+                score1.setText(scores[3][1]);
 
             }
         };
         mRunnable[4] = new Runnable() {
             @Override
             public void run() {
-                score1.setText(scores[4][0]);
-                score2.setText(scores[4][1]);
+                score2.setText(scores[4][0]);
+                score1.setText(scores[4][1]);
             }
         };
 

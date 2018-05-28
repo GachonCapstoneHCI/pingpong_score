@@ -37,7 +37,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name" >
+        </activity>
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
@@ -56,7 +57,9 @@
         <activity
             android:name=".ui.ExportActivity"
             android:label="@string/action_export"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity" >
+
+        </activity>
 
         <service android:name=".SensorReceiverService">
             <intent-filter>
